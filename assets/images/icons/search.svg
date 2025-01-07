@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- AI Search Icon -->
+    <rect width="64" height="64" rx="16" fill="url(#search-gradient)"/>
+    
+    <!-- Search Lens -->
+    <circle cx="28" cy="28" r="12" stroke="white" stroke-width="3" fill="none"/>
+    <line x1="37" y1="37" x2="46" y2="46" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- AI Pulse Effect -->
+    <circle cx="28" cy="28" r="6" stroke="white" stroke-width="1" stroke-dasharray="4 4" fill="none">
+        <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="search-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#1ABC9C"/>
+            <stop offset="100%" stop-color="#16A085"/>
+        </linearGradient>
+    </defs>
+</svg>

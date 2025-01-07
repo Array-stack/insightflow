@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Automation Icon -->
+    <rect width="64" height="64" rx="16" fill="url(#automation-gradient)"/>
+    
+    <!-- Gear Symbol -->
+    <path d="M32 20C37.5228 20 42 24.4772 42 30C42 35.5228 37.5228 40 32 40C26.4772 40 22 35.5228 22 30C22 24.4772 26.4772 20 32 20Z" 
+          stroke="white" stroke-width="2" fill="none"/>
+    
+    <!-- Automation Arrows -->
+    <path d="M32 16V24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M32 36V44" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M44 30H48" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M16 30H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Center Point -->
+    <circle cx="32" cy="30" r="4" fill="white"/>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="automation-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9B59B6"/>
+            <stop offset="100%" stop-color="#8E44AD"/>
+        </linearGradient>
+    </defs>
+</svg>

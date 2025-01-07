@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Export Icon -->
+    <rect width="64" height="64" rx="16" fill="url(#export-gradient)"/>
+    
+    <!-- Export Arrow -->
+    <path d="M32 16V40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M24 32L32 40L40 32" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Platform Line -->
+    <path d="M16 48H48" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Data Flow Effect -->
+    <path d="M24 44C24 44 32 42 32 40C32 38 40 36 40 36" 
+          stroke="white" stroke-width="1" stroke-dasharray="3 3" fill="none">
+        <animate attributeName="stroke-dashoffset" values="6;0;6" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="export-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3498DB"/>
+            <stop offset="100%" stop-color="#2980B9"/>
+        </linearGradient>
+    </defs>
+</svg>

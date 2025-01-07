@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- PDF Analysis Icon -->
+    <rect width="64" height="64" rx="16" fill="url(#pdf-gradient)"/>
+    
+    <!-- Document Shape -->
+    <path d="M24 16H40L48 24V48H24V16Z" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M40 16V24H48" stroke="white" stroke-width="2"/>
+    
+    <!-- Text Lines -->
+    <line x1="28" y1="32" x2="44" y2="32" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="28" y1="38" x2="44" y2="38" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="28" y1="44" x2="36" y2="44" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- AI Scan Effect -->
+    <rect x="24" y="16" width="24" height="32" stroke="white" stroke-width="1" stroke-dasharray="2 2" fill="none">
+        <animate attributeName="stroke-dashoffset" values="4;0;4" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="pdf-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E74C3C"/>
+            <stop offset="100%" stop-color="#C0392B"/>
+        </linearGradient>
+    </defs>
+</svg>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://insightflow.ai/sitemap.xml

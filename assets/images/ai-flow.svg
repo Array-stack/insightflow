@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- AI Flow Visualization -->
+    
+    <!-- Background Grid -->
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M0 40h40M40 0v40" stroke="#3498DB" stroke-width="0.5" stroke-opacity="0.1"/>
+    </pattern>
+    <rect width="800" height="600" fill="url(#grid)"/>
+    
+    <!-- Flow Lines -->
+    <path d="M100 300C200 300 250 100 400 100C550 100 600 300 700 300" 
+          stroke="url(#flow-gradient)" stroke-width="4" fill="none"/>
+    <path d="M100 300C200 300 250 500 400 500C550 500 600 300 700 300" 
+          stroke="url(#flow-gradient)" stroke-width="4" fill="none"/>
+    
+    <!-- Data Points -->
+    <circle cx="100" cy="300" r="8" fill="#3498DB"/>
+    <circle cx="400" cy="100" r="8" fill="#3498DB"/>
+    <circle cx="400" cy="500" r="8" fill="#3498DB"/>
+    <circle cx="700" cy="300" r="8" fill="#3498DB"/>
+    
+    <!-- Gradient Definitions -->
+    <defs>
+        <linearGradient id="flow-gradient" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3498DB"/>
+            <stop offset="50%" stop-color="#E74C3C"/>
+            <stop offset="100%" stop-color="#2C3E50"/>
+        </linearGradient>
+    </defs>
+</svg>

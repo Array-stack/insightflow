@@ -1,0 +1,769 @@
+{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}{{ ... }}
+    <link href="./assets/css/style.css" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "InsightFlow",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "description": "KI-gestützte Prozessautomatisierung für Unternehmen. Steigern Sie Ihre Effizienz mit intelligenten Workflow-Lösungen.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "InsightFlow",
+            "url": "https://insightflow.ai"
+        }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "InsightFlow",
+        "url": "https://insightflow.ai",
+        "logo": "https://insightflow.ai/assets/images/logo.svg",
+        "sameAs": [
+            "https://www.linkedin.com/company/insightflow",
+            "https://twitter.com/insightflow",
+            "https://www.facebook.com/insightflow"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+49-123-4567890",
+            "contactType": "customer service",
+            "availableLanguage": ["German", "English"]
+        }
+    }
+    </script>
+</head>
+{{ ... }}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://insightflow.ai/</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://insightflow.ai/datenschutz.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://insightflow.ai/impressum.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://insightflow.ai/agb.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>

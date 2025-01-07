@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- GPT Integration Icon -->
+    <rect width="64" height="64" rx="16" fill="url(#gpt-gradient)"/>
+    
+    <!-- Brain Circuit Symbol -->
+    <path d="M22 32C22 26.4772 26.4772 22 32 22C37.5228 22 42 26.4772 42 32" 
+          stroke="white" stroke-width="2" fill="none"/>
+    <path d="M32 22V42" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Neural Network Nodes -->
+    <circle cx="32" cy="22" r="3" fill="white"/>
+    <circle cx="32" cy="42" r="3" fill="white"/>
+    <circle cx="22" cy="32" r="3" fill="white"/>
+    <circle cx="42" cy="32" r="3" fill="white"/>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="gpt-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E74C3C"/>
+            <stop offset="100%" stop-color="#C0392B"/>
+        </linearGradient>
+    </defs>
+</svg>

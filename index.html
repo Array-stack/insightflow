@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightFlow - KI-gestützte Content Intelligence Platform</title>
+    <meta name="description" content="InsightFlow - Transform Content into Intelligence with AI. Die führende KI-gestützte Content Intelligence Platform für Researcher, Marketer und Analysten.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+    <link rel="alternate icon" type="image/png" href="assets/images/favicon.png">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Critical CSS -->
+    <style>
+        body { opacity: 0; transition: opacity .3s; margin: 0; }
+        body.loading { opacity: 1; }
+        .navbar { background: rgba(255, 255, 255, 0.95); padding: 1rem 0; }
+        .navbar-brand img { height: 40px; }
+        .hero { padding-top: 120px; padding-bottom: 80px; }
+        @media (max-width: 768px) {
+            .hero { padding-top: 100px; padding-bottom: 60px; }
+        }
+    </style>
+</head>
+<body class="loading">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-2">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo-header.svg" alt="Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#solutions">Lösungen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#pricing">Preise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#about">Über uns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#contact">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="btn btn-primary chat-start-btn" id="startChatButton">Demo starten</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="display-4 fw-bold mb-4">Transform Content into Intelligence with AI</h1>
+                        <p class="lead mb-4">Nutzen Sie die Kraft der künstlichen Intelligenz für Ihre Content-Analyse. InsightFlow vereint KI-gestützte Extraktion, Analyse und Insights in einer Platform.</p>
+                        <div class="hero-cta">
+                            <a href="#demo" class="btn btn-primary btn-lg me-3">Demo starten</a>
+                            <a href="#features" class="btn btn-outline-primary btn-lg">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-animation">
+                        <div class="ai-flow-visual">
+                            <canvas></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>KI-gestützte Features</h2>
+                <p>Entdecken Sie die Möglichkeiten unserer AI-powered Platform</p>
+            </div>
+            <div class="row g-4">
+                <!-- Feature 1: Intelligente Extraktion -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="assets/images/icons/extract.svg" alt="Extraktion" width="64" height="64" loading="lazy">
+                        </div>
+                        <h3>Intelligente Extraktion</h3>
+                        <p>KI-gestützte Datenextraktion aus verschiedenen Quellen</p>
+                    </div>
+                </div>
+                <!-- Feature 2: GPT Integration -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="assets/images/icons/gpt.svg" alt="GPT" width="64" height="64" loading="lazy">
+                        </div>
+                        <h3>GPT Integration</h3>
+                        <p>Fortschrittliche Textanalyse mit GPT-Technologie</p>
+                    </div>
+                </div>
+                <!-- Feature 3: Predictive Analytics -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="assets/images/icons/analytics.svg" alt="Analytics" width="64" height="64" loading="lazy">
+                        </div>
+                        <h3>Predictive Analytics</h3>
+                        <p>KI-basierte Vorhersagen und Trendanalysen</p>
+                    </div>
+                </div>
+                <!-- Feature 4: Smart Automation -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="assets/images/icons/automation.svg" alt="Automation" width="64" height="64" loading="lazy">
+                        </div>
+                        <h3>Smart Automation</h3>
+                        <p>Automatisierte Workflows und intelligente Alerts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zielgruppen Section -->
+    <section class="target-groups" id="solutions">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Maßgeschneiderte Lösungen</h2>
+                <p class="lead text-muted">Entdecken Sie unsere spezialisierten KI-Lösungen für Ihre Branche</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Content Researcher & Journalisten -->
+                <div class="col-lg-6">
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <img src="assets/images/icons/researcher.svg" alt="Content Researcher" width="64" height="64" loading="lazy">
+                        </div>
+                        <div class="solution-content">
+                            <h3>Content Researcher & Journalisten</h3>
+                            <p class="mb-4">Optimieren Sie Ihre Recherche mit KI-gestützter Analyse und automatischen Zusammenfassungen.</p>
+                            <ul class="feature-list">
+                                <li>KI-gestützte Quellenanalyse</li>
+                                <li>Automatische Zusammenfassungen durch GPT</li>
+                                <li>Intelligenter Quellenvergleich</li>
+                                <li>KI-basierte Zitationsgenerierung</li>
+                            </ul>
+                            <a href="#demo" class="btn btn-outline-primary mt-3">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Digital Marketer -->
+                <div class="col-lg-6">
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <img src="assets/images/icons/marketer.svg" alt="Digital Marketer" width="64" height="64" loading="lazy">
+                        </div>
+                        <div class="solution-content">
+                            <h3>Digital Marketer & SEO-Experten</h3>
+                            <p class="mb-4">Steigern Sie Ihre Content-Performance mit KI-gestützter SEO-Analyse und Optimierung.</p>
+                            <ul class="feature-list">
+                                <li>KI-powered SEO-Analyse</li>
+                                <li>Predictive Keyword-Trends</li>
+                                <li>Automatische Content-Optimierung</li>
+                                <li>Smart Content-Gap-Analyse</li>
+                            </ul>
+                            <a href="#demo" class="btn btn-outline-primary mt-3">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- E-Commerce Manager -->
+                <div class="col-lg-6">
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <img src="assets/images/icons/ecommerce.svg" alt="E-Commerce Manager" width="64" height="64" loading="lazy">
+                        </div>
+                        <div class="solution-content">
+                            <h3>E-Commerce Manager</h3>
+                            <p class="mb-4">Optimieren Sie Ihre Marktposition mit KI-basiertem Preistracking und Marktanalyse.</p>
+                            <ul class="feature-list">
+                                <li>KI-basiertes Preistracking</li>
+                                <li>Automatische Produktvergleiche</li>
+                                <li>Predictive Market Analysis</li>
+                                <li>Smart Pricing Alerts</li>
+                            </ul>
+                            <a href="#demo" class="btn btn-outline-primary mt-3">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marktforscher -->
+                <div class="col-lg-6">
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <img src="assets/images/icons/analyst.svg" alt="Marktforscher" width="64" height="64" loading="lazy">
+                        </div>
+                        <div class="solution-content">
+                            <h3>Marktforscher & Analysten</h3>
+                            <p class="mb-4">Treffen Sie datenbasierte Entscheidungen mit KI-gestützter Analyse und Visualisierung.</p>
+                            <ul class="feature-list">
+                                <li>KI-gestützte Trendanalyse</li>
+                                <li>Automatische Berichtgenerierung</li>
+                                <li>Predictive Analytics</li>
+                                <li>Smart Data Visualization</li>
+                            </ul>
+                            <a href="#demo" class="btn btn-outline-primary mt-3">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Transparente Preisgestaltung</h2>
+                <p class="lead text-muted">Wählen Sie den Plan, der zu Ihren Bedürfnissen passt</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <!-- Starter Plan -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Starter</h3>
+                            <div class="price">
+                                <span class="currency">€</span>
+                                <span class="amount">49</span>
+                                <span class="period">/Monat</span>
+                            </div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check text-success me-2"></i>5.000 API Calls/Monat</li>
+                            <li><i class="fas fa-check text-success me-2"></i>2 Projekte</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Basic Support</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Standard Analysen</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-primary w-100">Jetzt starten</a>
+                    </div>
+                </div>
+                
+                <!-- Professional Plan -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Professional</h3>
+                            <div class="price">
+                                <span class="currency">€</span>
+                                <span class="amount">99</span>
+                                <span class="period">/Monat</span>
+                            </div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check text-success me-2"></i>25.000 API Calls/Monat</li>
+                            <li><i class="fas fa-check text-success me-2"></i>10 Projekte</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Priority Support</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Advanced Analysen</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary w-100">Jetzt starten</a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="pricing-card enterprise">
+                        <div class="pricing-header">
+                            <h3>Enterprise</h3>
+                            <div class="price">
+                                <span class="custom-price">Individuell</span>
+                            </div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i>Unbegrenzte API Calls</li>
+                            <li><i class="fas fa-check"></i>Unbegrenzte Projekte</li>
+                            <li><i class="fas fa-check"></i>24/7 Premium Support</li>
+                            <li><i class="fas fa-check"></i>Custom AI Modelle</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-light w-100">Kontakt aufnehmen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Kostenlose Demo anfragen</h2>
+                <p class="lead text-muted">Erleben Sie die Kraft der KI in einer persönlichen Demo</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Demo Request -->
+                <div class="col-lg-6">
+                    <div class="demo-card">
+                        <h3 class="mb-4">Kontakt aufnehmen</h3>
+                        <form id="contactForm" class="contact-form needs-validation" novalidate>
+                            <div class="row g-3">
+                                <!-- Name -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                                        <label for="name">Name</label>
+                                        <div class="invalid-feedback">
+                                            Bitte geben Sie Ihren Namen ein.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Company -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="company" name="company" placeholder="Unternehmen">
+                                        <label for="company">Unternehmen</label>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
+                                        <label for="email">E-Mail</label>
+                                        <div class="invalid-feedback">
+                                            Bitte geben Sie eine gültige E-Mail-Adresse ein.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefon">
+                                        <label for="phone">Telefon (optional)</label>
+                                    </div>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" name="message" placeholder="Ihre Nachricht" style="height: 120px" required></textarea>
+                                        <label for="message">Ihre Nachricht</label>
+                                        <div class="invalid-feedback">
+                                            Bitte geben Sie Ihre Nachricht ein.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Privacy Policy -->
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="privacy" required>
+                                        <label class="form-check-label" for="privacy">
+                                            Ich akzeptiere die <a href="./datenschutz.html">Datenschutzerklärung</a>
+                                        </label>
+                                        <div class="invalid-feedback">
+                                            Bitte akzeptieren Sie die Datenschutzerklärung.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <span class="submit-text">Nachricht senden</span>
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Demo Benefits -->
+                <div class="col-lg-6">
+                    <div class="benefits-card">
+                        <h3 class="mb-4">Das erwartet Sie in der Demo</h3>
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#3498DB" stroke-width="2"/>
+                                        <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="#3498DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="benefit-content">
+                                    <h4>Persönliche Beratung</h4>
+                                    <p class="mb-4">Individuelle Beratung zu Ihren spezifischen Anforderungen</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#3498DB" stroke-width="2"/>
+                                        <path d="M12 8V16M8 12H16" stroke="#3498DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="benefit-content">
+                                    <h4>Live Produktvorführung</h4>
+                                    <p class="mb-4">Erleben Sie die Features live in Aktion</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#3498DB" stroke-width="2"/>
+                                        <path d="M12 8V16M8 12H16" stroke="#3498DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="benefit-content">
+                                    <h4>Kostenlose Testphase</h4>
+                                    <p class="mb-4">14 Tage kostenlos alle Features testen</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Cases -->
+            <div class="use-cases mt-5">
+                <h3 class="text-center mb-4">Erfolgsgeschichten</h3>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="case-card">
+                            <div class="case-icon">
+                                <img src="assets/images/icons/research.svg" alt="Research" width="48" height="48" loading="lazy">
+                            </div>
+                            <h4>Medienunternehmen</h4>
+                            <p>50% schnellere Recherche durch KI-gestützte Analyse</p>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">-40%</span>
+                                    <span class="stat-label">Zeitaufwand</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">+60%</span>
+                                    <span class="stat-label">Effizienz</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="case-card">
+                            <div class="case-icon">
+                                <img src="assets/images/icons/marketing.svg" alt="Marketing" width="48" height="48" loading="lazy">
+                            </div>
+                            <h4>Marketing Agentur</h4>
+                            <p>Verdopplung der Content-Produktion mit KI</p>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">+100%</span>
+                                    <span class="stat-label">Output</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">+45%</span>
+                                    <span class="stat-label">ROI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="case-card">
+                            <div class="case-icon">
+                                <img src="assets/images/icons/ecommerce.svg" alt="E-Commerce" width="48" height="48" loading="lazy">
+                            </div>
+                            <h4>Online Shop</h4>
+                            <p>30% Umsatzsteigerung durch KI-Optimierung</p>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">+30%</span>
+                                    <span class="stat-label">Umsatz</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">-25%</span>
+                                    <span class="stat-label">Kosten</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Section -->
+    <section class="roi" id="roi">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-5 fw-bold">ROI Calculator</h2>
+                <p class="lead text-muted">Berechnen Sie Ihre potenzielle Ersparnis mit InsightFlow</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="calculator-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="currentHours" class="form-label">Aktuelle monatliche Arbeitsstunden für Content-Analyse</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="currentHours" min="1" max="1000" placeholder="z.B. 40">
+                                        <span class="input-group-text">Stunden</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label for="hourlyRate" class="form-label">Durchschnittlicher Stundensatz</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">€</span>
+                                        <input type="number" class="form-control" id="hourlyRate" min="1" max="500" placeholder="z.B. 50">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label for="teamSize" class="form-label">Team-Größe</label>
+                                    <select class="form-select" id="teamSize">
+                                        <option value="1">1-5 Mitarbeiter</option>
+                                        <option value="2">6-15 Mitarbeiter</option>
+                                        <option value="3">16-50 Mitarbeiter</option>
+                                        <option value="4">50+ Mitarbeiter</option>
+                                    </select>
+                                </div>
+
+                                <button onclick="calculateROI()" class="btn btn-primary w-100">ROI Berechnen</button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div id="roiResult" class="d-none">
+                                    <div class="result-card mb-4">
+                                        <h3 class="text-primary mb-4">Ihre potenzielle Ersparnis</h3>
+                                        
+                                        <div class="result-item mb-4">
+                                            <div class="result-icon">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <div class="result-content">
+                                                <h4>Zeitersparnis pro Monat</h4>
+                                                <p class="result-value"><span id="timeSaved">0</span> Stunden</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="result-item mb-4">
+                                            <div class="result-icon">
+                                                <i class="fas fa-euro-sign"></i>
+                                            </div>
+                                            <div class="result-content">
+                                                <h4>Jährliche Kosteneinsparung</h4>
+                                                <p class="result-value">€ <span id="moneySaved">0</span></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="result-item">
+                                            <div class="result-icon">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <div class="result-content">
+                                                <h4>Effizienzsteigerung</h4>
+                                                <p class="result-value"><span id="efficiency">0</span>%</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <a href="#contact" class="btn btn-outline-primary">Jetzt beraten lassen</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-content">
+                        <div class="section-header mb-4">
+                            <h2 class="display-5 fw-bold mb-3">Unsere Mission</h2>
+                            <p class="lead text-muted">Wir revolutionieren die Art und Weise, wie Unternehmen Inhalte verstehen und nutzen durch innovative KI-Technologie.</p>
+                        </div>
+                        <div class="about-text">
+                            <p class="mb-4">Wir wurden mit der Vision gegründet, die Kraft der künstlichen Intelligenz zu nutzen, um Unternehmen dabei zu helfen, wertvolle Erkenntnisse aus der ständig wachsenden Menge an digitalen Inhalten zu gewinnen.</p>
+                            
+                            <div class="key-points">
+                                <div class="key-point">
+                                    <div class="key-point-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#3498DB" stroke-width="2"/>
+                                            <path d="M7.5 12.5L10.5 15.5L16.5 9.5" stroke="#3498DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="key-point-content">
+                                        <h4>Innovation durch KI</h4>
+                                        <p class="mb-4">Kontinuierliche Weiterentwicklung unserer KI-Algorithmen für bessere Ergebnisse</p>
+                                    </div>
+                                </div>
+                                <div class="key-point">
+                                    <div class="key-point-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#3498DB" stroke-width="2"/>
+                                            <path d="M12 8V16M8 12H16" stroke="#3498DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="key-point-content">
+                                        <h4>Kundenorientierung</h4>
+                                        <p class="mb-4">Entwicklung maßgeschneiderter Lösungen für spezifische Branchenanforderungen</p>
+                                    </div>
+                                </div>
+                                <div class="key-point">
+                                    <div class="key-point-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#3498DB" stroke-width="2"/>
+                                            <path d="M12 8V16M8 12H16" stroke="#3498DB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="key-point-content">
+                                        <h4>Nachhaltiger Impact</h4>
+                                        <p class="mb-4">Fokus auf langfristige Effizienzsteigerung und messbaren ROI</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="assets/images/ai-flow.svg" alt="InsightFlow KI-Workflow Visualisierung - Intelligente Prozessautomatisierung in Aktion" class="img-fluid" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact mt-2">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-header text-center mb-5">
+                            <h2 class="display-5 fw-bold">Kontakt & Support</h2>
+                            <p class="lead text-muted">Wählen Sie Ihren bevorzugten Weg der Kommunikation</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="contact-grid">
+                    <!-- Main Contact Card -->
+                    <div class="contact-card main-card">
+                        <div class="card-content">
+                            <div class="tech-circle">
+                                <div class="pulse"></div>
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>KI-Support</h3>
+                            <p>Erhalten Sie sofortige Antworten auf Ihre Fragen durch unseren KI-Assistenten</p>
+                            <button class="btn btn-primary btn-glow support-chat-btn" id="startChatButton" onclick="openChat(event)">
+                                <i class="fas fa-comments"></i>
+                                Chat starten
+                            </button>
+                        </div>
+                    </div>
+    
+                    <!-- Quick Demo Card -->
+                    <div class="contact-card demo-card">
+                        <div class="card-content">
+                            <div class="tech-circle">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <h3>Live Demo</h3>
+                            <p>Erleben Sie die Leistungsfähigkeit unserer KI-Plattform in einer persönlichen Demo</p>
+                            <a href="#demo" class="btn btn-outline-primary">Demo anfragen</a>
+                        </div>
+                    </div>
+    
+                    <!-- Quick Contact Form -->
+                    <div class="contact-card form-card">
+                        <div class="card-content">
+                            <div class="tech-circle">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Schnellkontakt</h3>
+                            <form id="quickContactForm" class="quick-contact-form">
+                                <div class="form-floating mb-2">
+                                    <input type="text" class="form-control" id="quickName" name="quickName" placeholder="Ihr Name" required>
+                                    <label for="quickName">Ihr Name</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input type="email" class="form-control" id="quickEmail" name="quickEmail" placeholder="name@example.com" required>
+                                    <label for="quickEmail">Ihre E-Mail</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" id="quickMessage" name="quickMessage" placeholder="Ihre Nachricht" style="height: 80px" required></textarea>
+                                    <label for="quickMessage">Ihre Nachricht</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Nachricht senden
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+    
+            <!-- Background Pattern -->
+            <div class="tech-background">
+                <div class="circuit-lines"></div>
+            </div>
+        </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="newsletter-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">Newsletter</h2>
+                    <p class="lead mb-5">Bleiben Sie auf dem Laufenden über neue Features und Updates</p>
+                    
+                    <form id="newsletterForm" class="newsletter-form needs-validation" novalidate>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" id="newsletterEmail" name="email" 
+                                placeholder="Ihre E-Mail Adresse" required 
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="submit-text">Anmelden</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="invalid-feedback">
+                            Bitte geben Sie eine gültige E-Mail-Adresse ein.
+                        </div>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="newsletterPrivacy" required>
+                            <label class="form-check-label" for="newsletterPrivacy">
+                                Ich akzeptiere die <a href="./datenschutz.html">Datenschutzerklärung</a> und stimme dem Erhalt des Newsletters zu.
+                            </label>
+                            <div class="invalid-feedback">
+                                Bitte akzeptieren Sie die Datenschutzerklärung.
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Logo und Name -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo.svg" alt="Logo" class="footer-logo">
+                        <p class="mt-2">Transform Content into Intelligence with AI. Die führende Content Intelligence Platform für Researcher, Marketer und Analysten.</p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-section">
+                        <h5>Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#pricing">Preise</a></li>
+                            <li><a href="#about">Über uns</a></li>
+                            <li><a href="#contact">Kontakt</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-section">
+                        <h5>Rechtliches</h5>
+                        <ul class="footer-links">
+                            <li><a href="datenschutz.html">Datenschutz</a></li>
+                            <li><a href="agb.html">AGB</a></li>
+                            <li><a href="impressum.html">Impressum</a></li>
+                            <li><a href="#" id="openCookieSettings" class="cookie-settings-link"><i class="fas fa-cookie-bite"></i> Cookie-Einstellungen</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-section">
+                        <h5>Kontakt</h5>
+                        <p class="mb-3">Haben Sie Fragen? Unser KI-Support ist rund um die Uhr für Sie da!</p>
+                        <a href="#" class="btn btn-outline-light support-chat-btn">Chat starten</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p class="mb-0">&copy; 2025 InsightFlow. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <p>Wir verwenden Cookies, um Ihnen das beste Nutzererlebnis zu bieten.</p>
+            
+            <!-- Cookie Settings -->
+            <div id="cookieSettings">
+                <div class="cookie-option">
+                    <label>Essentiell</label>
+                    <label class="switch">
+                        <input type="checkbox" id="essentialCookies" checked disabled>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="cookie-option">
+                    <label>Analyse</label>
+                    <label class="switch">
+                        <input type="checkbox" id="analyticsCookies">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="cookie-option">
+                    <label>Marketing</label>
+                    <label class="switch">
+                        <input type="checkbox" id="marketingCookies">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="cookie-buttons">
+                <button id="acceptCookies">OK</button>
+                <button id="showSettings">Anpassen</button>
+                <button id="saveSettings">Speichern</button>
+                <button id="rejectCookies">Ablehnen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Back Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Chat-Bot Integration -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/ai-flow.js"></script>
+    <script src="assets/js/contact-form.js"></script>
+    <script src="assets/js/newsletter.js"></script>
+    <script src="assets/js/cookie-consent.js"></script>
+    
+    <!-- Chatbot Initialization -->
+    <script type="module">
+        import { ChatBot } from './assets/js/chatbot/chatbot.js';
+        
+        // Globale Variable für den Chatbot
+        let globalChatbot = null;
+        
+        // Funktion zum Öffnen des Chats
+        function openChat(e) {
+            if (e) e.preventDefault();
+            if (globalChatbot) {
+                globalChatbot.openChat();
+            }
+        }
+        
+        // Warte bis alle Ressourcen geladen sind
+        window.addEventListener('load', async () => {
+            try {
+                console.log('Starting chatbot initialization...');
+                globalChatbot = new ChatBot();
+                await globalChatbot.init();
+                
+                // Chat-Button mit Chatbot verknüpfen
+                const chatButtons = document.querySelectorAll('#startChatButton');
+                chatButtons.forEach(button => {
+                    button.addEventListener('click', openChat);
+                });
+                
+                // Mache die openChat Funktion global verfügbar
+                window.openChat = openChat;
+                
+            } catch (error) {
+                console.error('Chatbot initialization failed:', error);
+            }
+        });
+    </script>
+</body>
+</html>

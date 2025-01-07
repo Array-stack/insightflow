@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Collaboration Icon -->
+    <rect width="64" height="64" rx="16" fill="url(#collab-gradient)"/>
+    
+    <!-- Team Circles -->
+    <circle cx="22" cy="32" r="6" fill="white"/>
+    <circle cx="42" cy="32" r="6" fill="white"/>
+    <circle cx="32" cy="22" r="6" fill="white"/>
+    
+    <!-- Connection Lines -->
+    <path d="M22 32L32 22M32 22L42 32M22 32L42 32" 
+          stroke="white" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- AI Connection Pulse -->
+    <circle cx="32" cy="22" r="8" stroke="white" stroke-width="1" stroke-dasharray="4 4" fill="none">
+        <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-opacity" values="1;0;1" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="collab-gradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#F1C40F"/>
+            <stop offset="100%" stop-color="#F39C12"/>
+        </linearGradient>
+    </defs>
+</svg>

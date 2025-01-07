@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Logo Background -->
+    <rect width="40" height="40" rx="8" fill="url(#logo-gradient)"/>
+    
+    <!-- AI Flow Symbol -->
+    <path d="M10 20C10 14.4772 14.4772 10 20 10C25.5228 10 30 14.4772 30 20C30 25.5228 25.5228 30 20 30C14.4772 30 10 25.5228 10 20Z" 
+          stroke="#FFFFFF" stroke-width="2" fill="none"/>
+    <path d="M15 20C15 16.6863 17.6863 14 21 14C24.3137 14 27 16.6863 27 20" 
+          stroke="#FFFFFF" stroke-width="2" fill="none" stroke-dasharray="2 2"/>
+    
+    <!-- Text "InsightFlow" -->
+    <text x="50" y="26" font-family="Inter" font-weight="600" font-size="20">
+        <tspan fill="#FFFFFF">Insight</tspan><tspan fill="#3498DB">Flow</tspan>
+    </text>
+    
+    <!-- Gradient Definition -->
+    <defs>
+        <linearGradient id="logo-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3498DB"/>
+            <stop offset="100%" stop-color="#2C3E50"/>
+        </linearGradient>
+    </defs>
+</svg>
