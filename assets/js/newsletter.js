@@ -40,7 +40,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const privacy = formData.get('newsletterPrivacy');
 
                 // API call simulation
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        access_key: 'WEB3FORMS_API_KEY', // Ihr Web3Forms API-Key
+                        email: email,
+                        subject: 'Neue Newsletter-Anmeldung',
+                        from_name: 'Newsletter Subscriber'
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    // Success handling bleibt gleich
+                } else {
+                    throw new Error('Failed to submit newsletter subscription');
+                }
 
                 // Show success message
                 showToast('Erfolgreich angemeldet!', 'Sie erhalten in Kürze eine Bestätigungs-E-Mail.');

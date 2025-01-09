@@ -15,6 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -58,7 +59,7 @@
                         <a class="nav-link px-3" href="#contact">Kontakt</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="btn btn-primary chat-start-btn" id="startChatButton">Demo starten</a>
+                        <a href="#demo" class="btn btn-primary ">Demo starten</a>
                     </li>
                 </ul>
             </div>
@@ -360,10 +361,10 @@
                                 </div>
 
                                 <!-- Message -->
-                                <div class="col-12">
+                                <div class="mb-3">
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="message" name="message" placeholder="Ihre Nachricht" style="height: 120px" required></textarea>
-                                        <label for="message">Ihre Nachricht</label>
+                                        <textarea class="form-control" id="quickMessage" name="quickMessage" placeholder="Ihre Nachricht" style="height: 120px" required></textarea>
+                                        <label for="quickMessage">Ihre Nachricht</label>
                                         <div class="invalid-feedback">
                                             Bitte geben Sie Ihre Nachricht ein.
                                         </div>
@@ -666,79 +667,90 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="section-header text-center mb-5">
-                            <h2 class="display-5 fw-bold">Kontakt & Support</h2>
+                            <h2 class="display-5 fw-bold">
+                                <i class="fas fa-headset me-2"></i>
+                                Kontakt & Support
+                                <i class="fas fa-comments ms-2"></i>
+                            </h2>
                             <p class="lead text-muted">Wählen Sie Ihren bevorzugten Weg der Kommunikation</p>
                         </div>
                     </div>
                 </div>
-    
-                <div class="contact-grid">
-                    <!-- Main Contact Card -->
-                    <div class="contact-card main-card">
-                        <div class="card-content">
-                            <div class="tech-circle">
-                                <div class="pulse"></div>
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h3>KI-Support</h3>
-                            <p>Erhalten Sie sofortige Antworten auf Ihre Fragen durch unseren KI-Assistenten</p>
-                            <button class="btn btn-primary btn-glow support-chat-btn" id="startChatButton" onclick="openChat(event)">
-                                <i class="fas fa-comments"></i>
-                                Chat starten
-                            </button>
+        
+      <div class="row g-4">
+          <!-- KI-Support Card -->
+          <div class="col-lg-4">
+              <div class="contact-card main-card">
+                  <div class="card-icon">
+                      <div class="pulse"></div>
+                      <i class="fas fa-robot"></i>
+                  </div>
+                  <h3>KI-Support</h3>
+                  <p>Erhalten Sie sofortige Antworten auf Ihre Fragen durch unseren KI-Assistenten</p>
+                  <button class="btn btn-primary btn-glow support-chat-btn" id="startChatButton" onclick="openChat(event)">
+                      <i class="fas fa-comments"></i>
+                      Chat starten
+                  </button>
+              </div>
+          </div>
+      
+          <!-- WhatsApp Card -->
+          <div class="col-lg-4">
+              <div class="contact-card whatsapp-card">
+                  <div class="card-icon">
+                      <i class="fab fa-whatsapp"></i>
+                  </div>
+                  <h3>WhatsApp Support</h3>
+                  <p>Schnell und unkompliziert per WhatsApp kontaktieren</p>
+                  <a href="https://wa.me/491234567890" target="_blank" class="btn btn-whatsapp">
+                      <i class="fab fa-whatsapp"></i>
+                      WhatsApp Chat
+                  </a>
+              </div>
+          </div>
+      
+          <!-- Contact Form -->
+          <div class="col-lg-4">
+              <div class="contact-card form-card">
+                  <div class="card-icon">
+                      <i class="fas fa-envelope"></i>
+                  </div>
+                  <h3>Kontaktformular</h3>
+                  <form id="quickContactForm">
+                      <div class="mb-3">
+                          <input type="text" class="form-control" placeholder="Ihr Name" name="quickName" required>
+                      </div>
+                      <div class="mb-3">
+                          <input type="email" class="form-control" placeholder="Ihre E-Mail" name="quickEmail" required>
+                      </div>
+                      <div class="mb-3">
+                          <textarea class="form-control" rows="3" placeholder="Ihre Nachricht" name="quickMessage" required></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary w-100">
+                          <span class="button-text">
+                              <i class="fas fa-paper-plane me-2"></i>
+                              Nachricht senden
+                          </span>
+                          <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                      </button>
+                      <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" id="newsletterPrivacy" required>
+                        <label class="form-check-label" for="newsletterPrivacy">
+                            Ich akzeptiere die <a href="./datenschutz.html">Datenschutzerklärung</a> 
+                        </label>
+                        <div class="invalid-feedback">
+                            Bitte akzeptieren Sie die Datenschutzerklärung.
                         </div>
                     </div>
-    
-                    <!-- Quick Demo Card -->
-                    <div class="contact-card demo-card">
-                        <div class="card-content">
-                            <div class="tech-circle">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <h3>Live Demo</h3>
-                            <p>Erleben Sie die Leistungsfähigkeit unserer KI-Plattform in einer persönlichen Demo</p>
-                            <a href="#demo" class="btn btn-outline-primary">Demo anfragen</a>
-                        </div>
-                    </div>
-    
-                    <!-- Quick Contact Form -->
-                    <div class="contact-card form-card">
-                        <div class="card-content">
-                            <div class="tech-circle">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h3>Schnellkontakt</h3>
-                            <form id="quickContactForm" class="quick-contact-form">
-                                <div class="form-floating mb-2">
-                                    <input type="text" class="form-control" id="quickName" name="quickName" placeholder="Ihr Name" required>
-                                    <label for="quickName">Ihr Name</label>
-                                </div>
-                                <div class="form-floating mb-2">
-                                    <input type="email" class="form-control" id="quickEmail" name="quickEmail" placeholder="name@example.com" required>
-                                    <label for="quickEmail">Ihre E-Mail</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <textarea class="form-control" id="quickMessage" name="quickMessage" placeholder="Ihre Nachricht" style="height: 80px" required></textarea>
-                                    <label for="quickMessage">Ihre Nachricht</label>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">
-                                    <i class="fas fa-paper-plane"></i>
-                                    Nachricht senden
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-    
-    
-            <!-- Background Pattern -->
-            <div class="tech-background">
-                <div class="circuit-lines"></div>
-            </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
         </section>
 
-    <!-- Newsletter Section -->
-    <section id="newsletter" class="newsletter-section py-5">
+     <!-- Newsletter Section -->
+     <section id="newsletter" class="newsletter-section py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -810,7 +822,9 @@
                     <div class="footer-section">
                         <h5>Kontakt</h5>
                         <p class="mb-3">Haben Sie Fragen? Unser KI-Support ist rund um die Uhr für Sie da!</p>
-                        <a href="#" class="btn btn-outline-light support-chat-btn">Chat starten</a>
+                        <a class="btn btn-primary btn-glow support-chat-btn" id="startChatButton" onclick="openChat(event)">
+                            <i class="fas fa-comments"></i>
+                            Chat starten</a>
                     </div>
                 </div>
             </div>

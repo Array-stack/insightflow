@@ -1,8 +1,6 @@
 console.log('Contact form script loaded');
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded - initializing contact form');
-    
     const form = document.getElementById('quickContactForm');
     
     if (!form) {
@@ -15,12 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
 
         const submitButton = form.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.innerHTML;
+        const buttonText = submitButton.querySelector('.button-text');
+        const spinner = submitButton.querySelector('.spinner-border');
 
         if (form.checkValidity()) {
             // Disable button and show loading state
             submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wird gesendet...';
+            buttonText.style.display = 'none';
+            spinner.classList.remove('d-none');
 
             const formData = new FormData(form);
             
@@ -42,10 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                // Show success message
-                form.reset();
-                showToast('Erfolg!', 'Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.');
-                form.classList.remove('was-validated');
+                if (data.success) {
+                    // Show success message
+                    form.reset();
+                    showToast('Erfolg!', 'Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.');
+                    form.classList.remove('was-validated');
+                } else {
+                    throw new Error('Failed to submit form');
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -54,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .finally(() => {
                 // Reset button state
                 submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
+                buttonText.style.display = 'inline';
+                spinner.classList.add('d-none');
             });
         }
 
@@ -64,23 +69,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Toast notification function
 function showToast(title, message) {
-    const toastEl = document.getElementById('toast');
-    if (!toastEl) return;
-
-    const toast = new bootstrap.Toast(toastEl, {
-        animation: true,
-        autohide: true,
-        delay: 3000
-    });
-    
-    document.getElementById('toastTitle').textContent = title;
-    document.getElementById('toastMessage').textContent = message;
-    
-    // Entferne vorherige Toast, falls vorhanden
-    const existingToast = bootstrap.Toast.getInstance(toastEl);
-    if (existingToast) {
-        existingToast.dispose();
+    // Create toast container if it doesn't exist
+    let toastContainer = document.querySelector('.toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+        document.body.appendChild(toastContainer);
     }
-    
+
+    // Create toast element
+    const toastHtml = `
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">${title}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        </div>
+    `;
+
+    // Add toast to container
+    toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+
+    // Initialize and show toast
+    const toastElement = toastContainer.lastElementChild;
+    const toast = new bootstrap.Toast(toastElement);
     toast.show();
+
+    // Remove toast after it's hidden
+    toastElement.addEventListener('hidden.bs.toast', function() {
+        toastElement.remove();
+    });
 }

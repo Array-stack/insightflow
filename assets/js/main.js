@@ -95,6 +95,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarCollapse.classList.remove('show');
+                navbarToggler.classList.add('collapsed');
+                navbarToggler.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
     // Back to top button
     const backToTop = document.querySelector('.back-to-top');
     if (backToTop) {

@@ -8,6 +8,8 @@
 # Konfigurationsdateien
 assets/js/chatbot/config.local.js
 
+assets/js/chatbot/env.js
+
 # Dependency Verzeichnisse
 node_modules/
 vendor/
