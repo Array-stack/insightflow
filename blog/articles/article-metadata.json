@@ -8,7 +8,7 @@
             "readTime": "5 min",
             "tags": ["KI", "Prozessoptimierung", "Künstliche Intelligenz", "Effizienz"],
             "summary": "Entdecken Sie, wie Künstliche Intelligenz Geschäftsprozesse revolutioniert und Unternehmen zu mehr Effizienz verhilft.",
-            "imageUrl": "/insightflow/blog/assets/images/prozess-optimierung.webp",
+            "imageUrl": "../assets/images/prozess-optimierung.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -68,7 +68,7 @@
             "readTime": "4 min",
             "tags": ["Automatisierung", "Produktivität", "Workflow"],
             "summary": "Lernen Sie, wie intelligente Automatisierung Ihre Geschäftsprozesse revolutionieren kann.",
-            "imageUrl": "/blog/assets/images/blogassetsimagesworkflow-auto.webp",
+            "imageUrl": "../assets/images/blogassetsimagesworkflow-auto.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -143,7 +143,7 @@
             "readTime": "7 min",
             "tags": ["KI", "Technologie", "Innovation"],
             "summary": "Eine umfassende Einführung in Künstliche Intelligenz und ihre revolutionären Auswirkungen auf unsere Gesellschaft.",
-            "imageUrl": "/blog/assets/images/Künstliche Intelligenz (KI).webp",
+            "imageUrl": "../assets/images/Künstliche Intelligenz (KI).webp",
             "content": [
                 {
                     "type": "paragraph",
@@ -182,7 +182,7 @@
             "readTime": "6 min", 
             "tags": ["WhatsApp", "KI", "Kundenservice", "Agent Assistants", "Unternehmenstechnologie"],
             "summary": "Entdecken Sie, wie WhatsApp Agent Assistants Kundenservice revolutionieren und Unternehmen Wettbewerbsvorteile verschaffen.",
-            "imageUrl": "/blog/assets/images/WhatsApp Agent Assistants.webp",
+            "imageUrl": "../assets/images/WhatsApp Agent Assistants.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -275,7 +275,7 @@
             "readTime": "7 min", 
             "tags": ["Chatbot", "KI", "Kundenservice", "Unternehmenskommunikation", "Automatisierung"],
             "summary": "Entdecken Sie, wie Chatbot-Assistenten Unternehmenskommunikation revolutionieren und Effizienz steigern.",
-            "imageUrl": "/blog/assets/images/ChatbotAssistants.webp",
+            "imageUrl": "../assets/images/ChatbotAssistants.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -376,7 +376,7 @@
             "readTime": "8 min", 
             "tags": ["Künstliche Intelligenz", "Ethik", "Technologieentwicklung", "Gesellschaft", "Verantwortung"],
             "summary": "Eine umfassende Analyse der ethischen Herausforderungen und Lösungsansätze in der Entwicklung künstlicher Intelligenz.",
-            "imageUrl": "/blog/assets/images/ethische-ki-verantwortung.webp",
+            "imageUrl": "../assets/images/ethische-ki-verantwortung.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -507,7 +507,7 @@
             "readTime": "15 min",
             "tags": ["Neurotechnologie", "Künstliche Intelligenz", "Mensch-Maschine-Schnittstelle", "Zukunftstechnologie", "Ethik"],
             "summary": "Eine tiefgehende Erkundung der revolutionären Technologie neuronaler Interfaces und ihrer potenziellen Auswirkungen auf Gesellschaft, Medizin und menschliche Wahrnehmung.",
-            "imageUrl": "/blog/assets/images/neuronale-interfaces.webp",
+            "imageUrl": "../assets/images/neuronale-interfaces.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -599,7 +599,7 @@
             "readTime": "12 min",
             "tags": ["KI-Automation", "Kommunikationsagenten", "Digitale Transformation", "Kundenservice", "Technologieinnovation"],
             "summary": "Eine umfassende Analyse, wie integrierte KI-Agenten Unternehmenskommunikation und Prozessautomation revolutionieren.",
-            "imageUrl": "/blog/assets/images/ki-kommunikations-revolution.webp",
+            "imageUrl": "../assets/images/ki-kommunikations-revolution.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -708,7 +708,7 @@
             "readTime": "15 min",
             "tags": ["WhatsApp", "KI-Integration", "Unternehmenskommunikation", "Digitale Transformation"],
             "summary": "Wissenschaftliche Analyse der technologischen und strategischen Dimensionen von KI-gestützter WhatsApp-Kommunikation in Unternehmensökosystemen.",
-            "imageUrl": "/blog/assets/images/ki-whatsapp-integration.webp",
+            "imageUrl": "../assets/images/ki-whatsapp-integration.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -805,7 +805,7 @@
                 "Unternehmensintelligenz"
             ],
             "summary": "Entdecken Sie, wie InsightFlow's fortschrittliche KI-Predictive Analytics Unternehmen befähigt, datengesteuerte Entscheidungen zu treffen und zukünftige Trends präzise vorherzusagen.",
-            "imageUrl": "/blog/assets/images/ki-predictive-analytics.webp",
+            "imageUrl": "../assets/images/ki-predictive-analytics.webp",
             "content": [
                 {
                     "type": "subtitle",
@@ -892,7 +892,7 @@
                 "Produktentwicklung"
             ],
             "summary": "Eine tiefgehende Erkundung, wie KI-Systeme Kreativität revolutionieren und neue Grenzen in Design, Kunst und Produktentwicklung definieren.",
-            "imageUrl": "/blog/assets/images/kreative-ki-generative-technologien.webp",
+            "imageUrl": "../assets/images/kreative-ki-generative-technologien.webp",
             "content": [
                 {
                     "type": "subtitle",
