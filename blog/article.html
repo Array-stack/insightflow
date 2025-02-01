@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InsightFlow Blog - Artikel</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+    <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/images/logo.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/blog.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-2">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="../assets/images/logo-header.svg" alt="InsightFlow Logo" height="40">
+            <a class="navbar-brand" href="{{ site.baseurl }}/">
+                <img src="{{ site.baseurl }}/assets/images/logo-header.svg" alt="InsightFlow Logo" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="blogNavbar">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Startseite</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="/blog/">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/#contact">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ site.baseurl }}/">Startseite</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{{ site.baseurl }}/blog/">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ site.baseurl }}/#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ site.baseurl }}/#contact">Kontakt</a></li>
                 </ul>
             </div>
         </div>
@@ -106,8 +106,8 @@
                 <!-- Logo und Name -->
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="footer-brand">
-                        <a href="/">
-                            <img src="../assets/images/logo.svg" alt="Logo" class="footer-logo">
+                        <a href="{{ site.baseurl }}/">
+                            <img src="{{ site.baseurl }}/assets/images/logo.svg" alt="Logo" class="footer-logo">
                         </a>
                         <p class="mt-2">Verwandeln Sie Inhalte in intelligente Insights mit KI. InsightFlow – die führende Plattform für Content Intelligence, maßgeschneidert für Researcher, Marketer und Analysten.</p>
                     </div>
@@ -116,10 +116,10 @@
                     <div class="footer-section">
                         <h5>Links</h5>
                         <ul class="footer-links">
-                            <li><a href="/#features">Features</a></li>
-                            <li><a href="/#pricing">Preise</a></li>
-                            <li><a href="/#about">Über uns</a></li>
-                            <li><a href="/#contact">Kontakt</a></li>
+                            <li><a href="{{ site.baseurl }}/#features">Features</a></li>
+                            <li><a href="{{ site.baseurl }}/#pricing">Preise</a></li>
+                            <li><a href="{{ site.baseurl }}/#about">Über uns</a></li>
+                            <li><a href="{{ site.baseurl }}/#contact">Kontakt</a></li>
                         </ul>
                     </div>
                 </div>
@@ -127,9 +127,9 @@
                     <div class="footer-section">
                         <h5>Rechtliches</h5>
                         <ul class="footer-links">
-                            <li><a href="/datenschutz.html">Datenschutz</a></li>
-                            <li><a href="/agb.html">AGB</a></li>
-                            <li><a href="/impressum.html">Impressum</a></li>
+                            <li><a href="{{ site.baseurl }}/datenschutz.html">Datenschutz</a></li>
+                            <li><a href="{{ site.baseurl }}/agb.html">AGB</a></li>
+                            <li><a href="{{ site.baseurl }}/impressum.html">Impressum</a></li>
                             <li><a href="javascript:void(0)" id="openCookieSettings" class="cookie-settings-link"><i class="fas fa-cookie-bite"></i> Cookie-Einstellungen</a></li>
                         </ul>
                     </div>
@@ -152,8 +152,8 @@
 
     <!-- Skripte -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/article-loader.js"></script>
-    <script src="assets/js/blog-index.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/article-loader.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/blog-index.js"></script>
     
     
     <!-- Newsletter Skript -->
@@ -165,6 +165,6 @@
             emailjs.init("IHRE_ÖFFENTLICHE_SCHLÜSSEL_ID");
         })();
     </script>
-    <script src="assets/js/article-newsletter.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/article-newsletter.js"></script>
 </body>
 </html>
