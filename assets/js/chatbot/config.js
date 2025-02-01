@@ -22,7 +22,7 @@ export const companyConfig = {
     supportHours: "24/7 durch KI, Geschäftszeiten: Mo-Fr 9:00-18:00",
     contactInfo: {
         email: "support@insightflow.de",
-        phone: "+49 (0) 123 456789"
+        phone: "+49 (0) 1772602226"
     }
 };
 
@@ -35,7 +35,7 @@ export const companyConfig = {
 const defaultConfig = {
     openai: {
         apiKey: null,
-        model: 'gpt-4',
+        model: '3.5-turbo',
         maxRetries: 3,
         temperature: 0.7
     }

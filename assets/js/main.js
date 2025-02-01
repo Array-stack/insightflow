@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    // Close mobile menu when clicking on a link or the "Demo starten" button
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .btn');
     const navbarCollapse = document.querySelector('.navbar-collapse');
     const navbarToggler = document.querySelector('.navbar-toggler');
 
@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', () => {
             if (navbarCollapse.classList.contains('show')) {
                 navbarCollapse.classList.remove('show');
-                navbarToggler.classList.add('collapsed');
-                navbarToggler.setAttribute('aria-expanded', 'false');
-            }
-        });
+            navbarToggler.classList.add('collapsed');
+            navbarToggler.setAttribute('aria-expanded', 'false');
+        }
     });
+});
 
     // Back to top button
     const backToTop = document.querySelector('.back-to-top');
@@ -149,11 +149,11 @@ function initializeAIFlowVisual() {
     let isHovering = false;
     let zoomLevel = 1;
     let targetZoom = 1;
-    
+
     // Netzwerk-Punkte erstellen
     const points = [];
     const numPoints = 50;
-    
+
     for (let i = 0; i < numPoints; i++) {
         points.push({
             x: Math.random() * canvas.width,
@@ -206,41 +206,26 @@ function initializeAIFlowVisual() {
         });
     }
 
-    function updateMousePosition(e) {
-        const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-        isHovering = true;
-        
-        targetZoom = 1.5;
-    }
-
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+    
         // Zoom-Animation
         zoomLevel += (targetZoom - zoomLevel) * 0.1;
-        
+    
         ctx.save();
         if (isHovering) {
             ctx.translate(mouseX, mouseY);
             ctx.scale(zoomLevel, zoomLevel);
             ctx.translate(-mouseX, -mouseY);
         }
-        
+    
         updatePoints();
         drawNetwork();
-        
+    
         ctx.restore();
         requestAnimationFrame(draw);
     }
-
-    canvas.addEventListener('mousemove', updateMousePosition);
-    canvas.addEventListener('mouseleave', () => {
-        isHovering = false;
-        targetZoom = 1;
-    });
-
+    
     function resizeCanvas() {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
@@ -251,96 +236,7 @@ function initializeAIFlowVisual() {
     draw();
 }
 
-function initializeCursor() {
-    const cursor = document.createElement('div');
-    cursor.classList.add('custom-cursor');
-    cursor.style.display = 'none'; // Standardmäßig versteckt
-    document.body.appendChild(cursor);
-
-    const colors = [
-        '#4A90E2', // Blau
-        '#36D1DC', // Türkis
-        '#9333EA', // Lila
-        '#4F46E5', // Indigo
-        '#EC4899'  // Pink
-    ];
-
-    function createParticle(x, y) {
-        const particle = document.createElement('div');
-        particle.classList.add('cursor-particle');
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        document.body.appendChild(particle);
-        particle.style.animation = 'particleFade 0.8s forwards';
-        
-        setTimeout(() => {
-            particle.remove();
-        }, 800);
-    }
-
-    let lastX = 0;
-    let lastY = 0;
-    let isMoving = false;
-    let moveTimeout;
-    let isOverCanvas = false;
-
-    function updateCursor(e) {
-        const aiFlowVisual = document.querySelector('.ai-flow-visual');
-        const rect = aiFlowVisual.getBoundingClientRect();
-        
-        // Prüfen, ob der Mauszeiger über dem Canvas ist
-        isOverCanvas = (
-            e.clientX >= rect.left &&
-            e.clientX <= rect.right &&
-            e.clientY >= rect.top &&
-            e.clientY <= rect.bottom
-        );
-
-        if (isOverCanvas) {
-            cursor.style.display = 'block';
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            const currentX = e.clientX;
-            const currentY = e.clientY;
-            const distance = Math.hypot(currentX - lastX, currentY - lastY);
-            
-            if (distance > 5) {
-                isMoving = true;
-                clearTimeout(moveTimeout);
-                
-                if (Math.random() > 0.7) {
-                    createParticle(currentX, currentY);
-                }
-                
-                moveTimeout = setTimeout(() => {
-                    isMoving = false;
-                }, 100);
-                
-                lastX = currentX;
-                lastY = currentY;
-            }
-        } else {
-            cursor.style.display = 'none';
-        }
-    }
-
-    // Event Listeners
-    document.addEventListener('mousemove', updateCursor);
-    document.addEventListener('mousedown', (e) => {
-        if (isOverCanvas) {
-            cursor.classList.add('active');
-        }
-    });
-    document.addEventListener('mouseup', () => {
-        cursor.classList.remove('active');
-    });
-}
-
 // Initialisierung
 document.addEventListener('DOMContentLoaded', () => {
-    initializeCursor();
     initializeAIFlowVisual();
 });

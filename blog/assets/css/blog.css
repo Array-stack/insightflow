@@ -1,0 +1,353 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+    --background-color: #f4f4f4;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    padding-top: 60px; /* Reduzierter Abstand vom Menü */
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.blog-header {
+    position: relative;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    overflow: hidden;
+    padding: 8rem 0 6rem;  /* Mehr Platz am oberen Rand */
+    text-align: center;
+    margin-top: 0;  /* Sicherstellen, dass kein zus�tzlicher Abstand entsteht */
+}
+
+.blog-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, rgba(52, 152, 219, 0.6) 0%, rgba(41, 128, 185, 0.6) 100%),
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.2"%3E%3Cpath d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.blog-header h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.blog-header p {
+    position: relative;
+    z-index: 2;
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .blog-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .blog-header p {
+        font-size: 1rem;
+    }
+}
+
+.blog-articles {
+    background-color: #f8f9fa;
+}
+
+.blog-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.blog-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-card-image {
+    transform: scale(1.05);
+}
+
+.blog-card-content {
+    padding: 1.5rem;
+    background-color: white;
+}
+
+.blog-card-content h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.blog-card-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background-color: #3498db;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+/* Artikel-Detailseiten Styling */
+#article-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 10px; /* Reduzierter Abstand vom Men� */
+    padding: 15px; /* Reduzierter Innenabstand */
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#article-content h1 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+#article-content h2 {
+    color: var(--primary-color);
+    margin-top: 30px;
+}
+
+#article-content p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+#article-content ul {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 15px 0;
+    border-left: 3px solid var(--primary-color);
+}
+
+#article-content li {
+    margin-bottom: 12px;
+    padding-left: 15px;
+    position: relative;
+    color: #2c3e50; /* Dunklere Textfarbe für bessere Lesbarkeit */
+    line-height: 1.6;
+}
+
+#article-content li::before {
+    content: '✓';
+    color: var(--primary-color);
+    position: relative;
+    left: -10px;
+    font-weight: bold;
+}
+
+#article-content img {
+    width: 100%;
+    max-height: 250px;  /* Reduzierte H�he */
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 15px;  /* Reduzierter Abstand */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.article-header {
+    margin-top: 2rem; /* Reduzierter Abstand von 4rem auf 2rem */
+    padding-top: 1rem;
+}
+
+.article-title {
+    margin-bottom: 1rem; /* Kompakterer Titel-Abstand */
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.conclusion {
+    background-color: #e6f2ff;
+    border-left: 4px solid var(--primary-color);
+    padding: 15px;
+    margin-top: 30px;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .blog-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.footer {
+    background-color: #1c2331;  /* Dunklerer Hintergrund */
+    color: #ecf0f1;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer .footer-brand img {
+    filter: none;
+    max-height: 60px;
+}
+
+.footer .footer-section h5 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer .footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer .footer-links a {
+    color: #a0a0a0;
+    transition: color 0.3s ease;
+}
+
+.footer .footer-links a:hover {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.footer .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    margin-top: 2rem;
+    color: #7f8c8d;
+}
+
+.footer .support-chat-btn {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.footer .support-chat-btn:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.footer .support-chat-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.5);
+}
+
+/* Responsive und minimierte Artikelkarten */
+.blog-preview-container .card,
+.related-articles-compact .card {
+    transition: all 0.3s ease;
+    transform: scale(0.9); /* Standardmäßig etwas verkleinert */
+}
+
+.blog-preview-container .card:hover,
+.related-articles-compact .card:hover {
+    transform: scale(0.95); /* Leichte Vergrößerung beim Hover */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.blog-preview-container .card-img-top,
+.related-articles-compact .card-img-top {
+    height: 180px; /* Feste Höhe für Konsistenz */
+    object-fit: cover; /* Bild passt sich an, ohne verzerrt zu werden */
+    object-position: center; /* Zentriert das Bild */
+}
+
+/* Responsive Größenanpassungen */
+@media (max-width: 768px) {
+    .blog-preview-container .card,
+    .related-articles-compact .card {
+        transform: scale(0.85); /* Noch kleiner auf mobilen Geräten */
+    }
+
+    .blog-preview-container .card-img-top,
+    .related-articles-compact .card-img-top {
+        height: 150px; /* Kleinere Bildhöhe auf mobilen Geräten */
+    }
+}
+
+/* Textoptimierung */
+.blog-header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.05), 
+        rgba(41, 128, 185, 0.1)
+    );
+    background-color: #e6f2ff; /* Noch hellerer blauer Hintergrund */
+}
+
+.blog-header-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.8; /* Noch sichtbarer */
+}
+
+.blog-header-title {
+    position: relative;
+    z-index: 2;
+    color: #2c3e50;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}

@@ -242,8 +242,8 @@ section {
 }
 
 section h2 {
-    margin-top: -70px;  /* Negative margin um den fixed header zu kompensieren */
-    padding-top: 90px;  /* Padding um den Inhalt unter dem Header zu zeigen */
+    margin-top: 0px;  /* Negative margin um den fixed header zu kompensieren */
+    padding-top: 0px;  /* Padding um den Inhalt unter dem Header zu zeigen */
 }
 
 .section-header {
@@ -1531,153 +1531,149 @@ textarea.form-control {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 280px;
-    background: #fff;
-    color: #2c3e50;
-    padding: 1rem;
-    z-index: 9999;
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--primary-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(44, 62, 80, 0.1);
+    padding: 1.5rem;
+    z-index: 1000;
     display: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    font-size: 0.85rem;
+    transition: all 0.3s ease;
 }
 
 .cookie-consent.show {
     display: block;
-    animation: slideIn 0.3s ease-out;
+    animation: fadeInUp 0.4s ease-out;
 }
 
-.cookie-content {
-    line-height: 1.4;
+.cookie-consent .cookie-content {
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-.cookie-content p {
-    margin-bottom: 0.8rem;
-    color: #2c3e50;
+.cookie-consent .cookie-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000000; /* Reine schwarze Farbe für den Haupttext */
+    margin-bottom: 1rem;
 }
 
-/* Cookie Settings */
-#cookieSettings {
-    background: #f8f9fa;
-    border-radius: 6px;
-    padding: 0.8rem;
-    margin-top: 0.8rem;
-    font-size: 0.8rem;
-    display: none;
-}
-
-.cookie-option {
+.cookie-consent .cookie-option {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.6rem;
-    padding: 0.4rem;
-    background: #fff;
-    border-radius: 4px;
-    border: 1px solid #e9ecef;
+    align-items: center;
+    color: #000000; /* Schwarze Farbe für Optionslabels */
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.1);
 }
 
-.cookie-option:last-child {
-    margin-bottom: 0;
+.cookie-consent .cookie-option:last-child {
+    border-bottom: none;
 }
 
-.cookie-option label {
-    margin: 0;
-    font-size: 0.8rem;
-    color: #2c3e50;
-}
-
-/* Cookie Buttons */
-.cookie-buttons {
+.cookie-consent .cookie-buttons {
     display: flex;
-    gap: 0.4rem;
-    margin-top: 0.8rem;
     flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
-.cookie-buttons button {
-    padding: 0.4rem 0.8rem;
+.cookie-consent button {
+    padding: 0.6rem 1.2rem;
     border: none;
-    border-radius: 4px;
-    font-size: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.2s ease;
-    background: #f8f9fa;
-    color: #2c3e50;
-    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 #acceptCookies {
-    background: #007bff;
+    background: linear-gradient(135deg, var(--ai-gradient-start), var(--ai-gradient-end));
     color: white;
     border: none;
-    flex: 1;
 }
 
-#acceptCookies:hover {
-    background: #0056b3;
+#rejectCookies {
+    background-color: #6c757d;  /* Neutrale Graufarbe */
+    color: white;
 }
 
-#showSettings:hover,
-#rejectCookies:hover {
-    background: #e9ecef;
+#showSettings {
+    background-color: #f1f3f5;
+    color: var(--ai-gradient-start);
 }
 
 #saveSettings {
-    background: #007bff;
+    background: linear-gradient(135deg, var(--ai-gradient-start), var(--ai-gradient-end));
     color: white;
+    display: none;  /* Standardmäßig versteckt */
     border: none;
-    display: none;
 }
 
-#saveSettings:hover {
-    background: #0056b3;
+/* Animation für Cookie Banner */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 
 /* Switch Styling */
-.switch {
+.cookie-consent .switch {
     position: relative;
     display: inline-block;
-    width: 32px;
-    height: 16px;
+    width: 50px;
+    height: 24px;
 }
 
-.switch input {
+.cookie-consent .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.slider {
+.cookie-consent .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #e9ecef;
-    transition: .3s;
-    border-radius: 16px;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
 }
 
-.slider:before {
+.cookie-consent .slider:before {
     position: absolute;
     content: "";
-    height: 12px;
-    width: 12px;
-    left: 2px;
-    bottom: 2px;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
     background-color: white;
-    transition: .3s;
+    transition: .4s;
     border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: #007bff;
+.cookie-consent input:checked + .slider {
+    background-color: var(--primary-color);
 }
 
-input:checked + .slider:before {
-    transform: translateX(16px);
+.cookie-consent input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 /* Mobile Anpassungen */
@@ -2286,4 +2282,72 @@ html {
 
 .form-floating > textarea.form-control ~ label {
     height: auto;
+}
+
+/* Spezifische Label-Styling für Kontaktaufnahme-Formular in Kostenlose Demo Sektion */
+.demo .form-floating > label {
+    color: var(--text-color) !important;
+    opacity: 1 !important;
+    font-weight: 500;
+}
+
+/* Korrektur für Textarea Label in Kontaktformular */
+.demo .form-floating textarea.form-control {
+    height: 120px;
+    padding-top: 1.5rem !important;
+}
+
+.demo .form-floating > textarea.form-control ~ label {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem !important;
+    opacity: 1 !important;
+}
+
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.notification.error {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 10000;
+}
+
+#ai-robot-cursor {
+    position: absolute;
+    pointer-events: none; /* Damit der Roboter keine Klicks blockiert */
+    width: 40px; /* Größe des Roboters */
+    height: 40px;
+    z-index: 9999; /* Damit der Roboter über allem schwebt */
+    display: none; /* Standardmäßig ausgeblendet */
+}
+
+.ai-robot-icon {
+    width: 100%;
+    height: 100%;
+    animation: float 2s infinite ease-in-out; /* Einfache Schwebe-Animation */
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }

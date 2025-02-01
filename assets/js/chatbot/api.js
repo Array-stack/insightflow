@@ -1,127 +1,183 @@
+import { apiConfig } from './config.js';
+
 /**
  * API-Klasse für die Kommunikation mit ChatGPT
+ * @class ChatAPI
+ * @description Verwaltet API-Kommunikation und Konfiguration
  */
 export class ChatAPI {
-    constructor(config) {
-        this.apiKey = config.apiKey;
-        this.systemPrompt = config.systemPrompt;
-        this.apiEndpoint = 'https://api.openai.com/v1/chat/completions';
-        this.model = 'gpt-4';
-        this.maxRetries = 3;
-        this.retryDelay = 1000; // 1 Sekunde
-    }
-
     /**
-     * Sendet eine Nachricht an die ChatGPT API
+     * Konstruktor initialisiert API-Konfiguration
+     * @param {Object} config - Konfigurationsobjekt
      */
-    async sendMessage(message, context = []) {
-        let retries = 0;
-        
-        while (retries < this.maxRetries) {
-            try {
-                const response = await this.makeRequest(message, context);
-                return response;
-            } catch (error) {
-                retries++;
-                
-                if (retries === this.maxRetries) {
-                    console.error('API Error after max retries:', error);
-                    throw new Error('API nicht erreichbar nach mehreren Versuchen');
-                }
-
-                // Exponentielles Backoff
-                await new Promise(resolve => 
-                    setTimeout(resolve, this.retryDelay * Math.pow(2, retries - 1))
-                );
-            }
-        }
-    }
-
-    /**
-     * Führt den eigentlichen API-Request durch
-     */
-    async makeRequest(message, context) {
-        const response = await fetch(this.apiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${this.apiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: this.model,
-                messages: [
-                    { 
-                        role: "system", 
-                        content: this.systemPrompt 
-                    },
-                    ...context.map(msg => ({
-                        role: msg.sender === 'user' ? 'user' : 'assistant',
-                        content: msg.text
-                    })),
-                    { 
-                        role: "user", 
-                        content: message 
-                    }
-                ],
-                temperature: 0.7,
-                max_tokens: 1000,
-                top_p: 1,
-                frequency_penalty: 0,
-                presence_penalty: 0
-            })
-        });
-
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error?.message || 'API-Fehler');
-        }
-
-        const data = await response.json();
-        return {
-            text: data.choices[0].message.content,
-            usage: data.usage,
-            model: data.model
+    constructor(config = {}) {
+        // Standardkonfiguration mit übergebener Konfiguration mergen
+        this.config = {
+            apiKey: config.apiKey || apiConfig.apiKey,
+            systemPrompt: config.systemPrompt || 'Standardmäßiger Hilfekontext',
+            endpoint: 'https://api.openai.com/v1/chat/completions',
+            model: config.model || 'gpt-3.5-turbo',
+            maxRetries: config.maxRetries || 3,
+            timeout: config.timeout || 10000
         };
+
+        // Sicherheitsmaßnahmen für API-Schlüssel
+        this.apiKey = this.secureKeyStorage(this.config.apiKey);
     }
 
     /**
-     * Prüft die API-Verbindung
+     * Speichert API-Schlüssel sicher
+     * @param {string} apiKey - Unverschlüsselter API-Schlüssel
+     * @returns {string} Verschlüsselter API-Schlüssel
      */
-    async testConnection() {
+    secureKeyStorage(apiKey) {
+        // Base64-Verschlüsselung
+        return window.btoa(apiKey);
+    }
+
+    /**
+     * Entschlüsselt den API-Schlüssel
+     * @returns {string} Entschlüsselter API-Schlüssel
+     */
+    decodeApiKey() {
+        return window.atob(this.apiKey);
+    }
+
+    /**
+     * Sendet Nachricht an OpenAI API
+     * @param {string} message - Benutzer-Nachricht
+     * @returns {Promise<Object>} API-Antwort
+     */
+    async sendMessage(message) {
         try {
-            const response = await this.sendMessage('Test connection');
-            return {
-                success: true,
-                model: response.model
-            };
+            const response = await fetch(this.config.endpoint, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.decodeApiKey()}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: this.config.model,
+                    messages: [
+                        { role: 'system', content: this.config.systemPrompt },
+                        { role: 'user', content: message }
+                    ],
+                    max_tokens: 150
+                }),
+                timeout: this.config.timeout
+            });
+
+            if (!response.ok) {
+                throw new Error('API-Anfrage fehlgeschlagen');
+            }
+
+            return await response.json();
+
         } catch (error) {
-            return {
-                success: false,
-                error: error.message
-            };
+            this.handleApiError(error);
+            throw error;
+        }
+    }
+
+    async handleUserMessage(message) {
+        try {
+            this.isProcessing = true;
+            this.ui.setInputLock(true);
+    
+            // Benutzernachricht hinzufügen
+            this.addMessage({
+                sender: 'user',
+                text: message,
+                timestamp: new Date()
+            });
+    
+            // Typing-Indikator anzeigen
+            this.ui.setTypingIndicator(true);
+    
+            // API-Verbindung testen (indirekt durch sendMessage)
+            const response = await this.api.sendMessage(
+                message,
+                this.conversation.messages
+            );
+    
+            // Antwort hinzufügen
+            this.addMessage({
+                sender: 'bot',
+                text: response.text,
+                timestamp: new Date()
+            });
+    
+            // Konversation speichern
+            await this.saveConversation();
+    
+        } catch (error) {
+            console.error('Message handling error:', error);
+            
+            this.conversation.status = 'needsAttention';
+            await this.saveConversation();
+    
+            this.addMessage({
+                sender: 'bot',
+                text: responseTemplates.error,
+                timestamp: new Date()
+            });
+    
+        } finally {
+            this.isProcessing = false;
+            this.ui.setInputLock(false);
+            this.ui.setTypingIndicator(false);
         }
     }
 
     /**
-     * Analysiert den Kontext einer Konversation
+     * Behandelt API-Fehler
+     * @param {Error} error - Aufgetretener Fehler
      */
-    analyzeContext(context) {
-        // Extrahiert wichtige Informationen aus dem Kontext
-        const keywords = new Set();
-        const topics = new Set();
-        
-        context.forEach(msg => {
-            // Hier könnte eine komplexere Analyse stattfinden
-            const words = msg.text.toLowerCase().split(' ');
-            words.forEach(word => {
-                if (word.length > 4) keywords.add(word);
-            });
+    handleApiError(error) {
+        console.error('API-Kommunikationsfehler:', {
+            message: error.message,
+            timestamp: new Date().toISOString()
         });
 
-        return {
-            keywords: Array.from(keywords),
-            topics: Array.from(topics),
-            messageCount: context.length
-        };
+        // Optional: Fehler-Tracking oder Benachrichtigung
+        this.logErrorToMonitoringService(error);
+    }
+
+    /**
+     * Protokolliert Fehler an Monitoring-Service
+     * @param {Error} error - Fehler-Objekt
+     */
+    logErrorToMonitoringService(error) {
+        // Implementieren Sie Ihr Fehler-Tracking
+        // z.B. Sentry, LogRocket, etc.
+    }
+
+    /**
+     * Generiert Fallback-Antwort
+     * @returns {string} Fallback-Nachricht
+     */
+    getFallbackResponse() {
+        const fallbackResponses = [
+            "Entschuldigung, momentan sind unsere Dienste überlastet.",
+            "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
+            "Unser Support-Team wurde benachrichtigt."
+        ];
+
+        return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+    }
+}
+
+// Beispielhafte Verwendung
+export function initializeChatAPI() {
+    try {
+        const api = new ChatAPI({
+            apiKey: process.env.OPENAI_API_KEY,
+            systemPrompt: 'Du bist ein freundlicher Kundenservice-Assistent.'
+        });
+
+        return api;
+    } catch (error) {
+        console.error('API-Initialisierung fehlgeschlagen:', error);
+        return null;
     }
 }

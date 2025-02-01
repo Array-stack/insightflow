@@ -1,88 +1,88 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Sicherstellen, dass die Elemente existieren
     const form = document.getElementById('newsletterForm');
-    if (!form) {
-        console.error('Newsletter form not found');
-        return;
-    }
-
+    const emailInput = form.querySelector('#newsletterEmail');
     const submitButton = form.querySelector('button[type="submit"]');
-    if (!submitButton) {
-        console.error('Submit button not found');
-        return;
-    }
-
     const submitText = submitButton.querySelector('.submit-text');
     const spinner = submitButton.querySelector('.spinner-border');
+    const privacyCheckbox = form.querySelector('#newsletterPrivacy');
 
-    if (!submitText || !spinner) {
-        console.error('Submit text or spinner elements not found');
-        return;
+    // E-Mail-Validierung mit Regex
+    function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(String(email).toLowerCase());
     }
 
-    // Form validation and submission
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         event.stopPropagation();
 
-        form.classList.add('was-validated');
+        const email = emailInput.value.trim();
 
-        if (form.checkValidity()) {
-            // Show loading state
-            submitButton.disabled = true;
-            submitText.textContent = 'Wird angemeldet...';
-            spinner.classList.remove('d-none');
+        // Zusätzliche Validierungen
+        if (!validateEmail(email)) {
+            emailInput.setCustomValidity('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+            form.classList.add('was-validated');
+            return;
+        }
 
-            try {
-                // Collect form data
-                const formData = new FormData(form);
-                const email = formData.get('email');
-                const privacy = formData.get('newsletterPrivacy');
+        if (!privacyCheckbox.checked) {
+            privacyCheckbox.setCustomValidity('Bitte akzeptieren Sie die Datenschutzerklärung.');
+            form.classList.add('was-validated');
+            return;
+        }
 
-                // API call simulation
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        access_key: 'WEB3FORMS_API_KEY', // Ihr Web3Forms API-Key
-                        email: email,
-                        subject: 'Neue Newsletter-Anmeldung',
-                        from_name: 'Newsletter Subscriber'
-                    })
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    // Success handling bleibt gleich
-                } else {
-                    throw new Error('Failed to submit newsletter subscription');
-                }
+        // Button deaktivieren und Ladeanimation zeigen
+        submitButton.disabled = true;
+        submitText.style.display = 'none';
+        spinner.classList.remove('d-none');
 
-                // Show success message
-                showToast('Erfolgreich angemeldet!', 'Sie erhalten in Kürze eine Bestätigungs-E-Mail.');
-                
-                // Reset form
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: '5183720c-076d-4b2d-b546-e83644b1d8a7',
+                    email: email,
+                    subject: 'Neue Newsletter-Anmeldung',
+                    message: `Newsletter-Anmeldung von: ${email}`,
+                    from_name: 'Newsletter Subscriber'
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Erfolgreiche Anmeldung
+                showToast('Erfolgreich!', 'Sie haben sich für unseren Newsletter angemeldet.');
                 form.reset();
                 form.classList.remove('was-validated');
-            } catch (error) {
-                console.error('Newsletter submission error:', error);
-                showToast('Fehler', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
-            } finally {
-                // Reset button state
-                submitButton.disabled = false;
-                submitText.textContent = 'Anmelden';
-                spinner.classList.add('d-none');
+            } else {
+                throw new Error('Newsletter-Anmeldung fehlgeschlagen');
             }
+        } catch (error) {
+            console.error('Newsletter submission error:', error);
+            showToast('Fehler', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
+        } finally {
+            // Button-Status zurücksetzen
+            submitButton.disabled = false;
+            submitText.style.display = 'inline';
+            spinner.classList.add('d-none');
+        }
+    });
+
+    // Zusätzliche Validierung während der Eingabe
+    emailInput.addEventListener('input', function() {
+        if (validateEmail(this.value.trim())) {
+            this.setCustomValidity('');
         }
     });
 });
 
-// Toast notification function
+// Toast-Benachrichtigungsfunktion
 function showToast(title, message) {
-    // Create toast container if it doesn't exist
     let toastContainer = document.querySelector('.toast-container');
     if (!toastContainer) {
         toastContainer = document.createElement('div');
@@ -90,7 +90,6 @@ function showToast(title, message) {
         document.body.appendChild(toastContainer);
     }
 
-    // Create toast element
     const toastHtml = `
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -103,16 +102,15 @@ function showToast(title, message) {
         </div>
     `;
 
-    // Add toast to container
     toastContainer.insertAdjacentHTML('beforeend', toastHtml);
 
-    // Initialize and show toast
     const toastElement = toastContainer.lastElementChild;
     const toast = new bootstrap.Toast(toastElement);
     toast.show();
 
-    // Remove toast after it's hidden
     toastElement.addEventListener('hidden.bs.toast', function() {
         toastElement.remove();
     });
 }
+
+console.log('Newsletter-Skript erfolgreich geladen.');

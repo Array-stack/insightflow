@@ -1,105 +1,169 @@
 class CookieConsent {
     constructor() {
-        this.cookieConsent = document.getElementById('cookieConsent');
+        this.cookieConsent = null;
         this.cookieSettings = {
             essential: true,
             analytics: false,
-            marketing: false
+            marketing: false,
+            consent_given: false
         };
         
-        // Sofort initialisieren, ohne auf DOMContentLoaded zu warten
-        this.init();
+        // Warten, bis das DOM vollständig geladen ist
+        document.addEventListener('DOMContentLoaded', () => {
+            this.initializeElements();
+            this.setupEventListeners();
+            this.loadSavedSettings();
+        });
     }
 
-    init() {
-        // Banner immer beim Start anzeigen
-        this.showBanner();
-        const savedSettings = this.getCookie('cookie_settings');
-        if (savedSettings) {
-            this.cookieSettings = JSON.parse(savedSettings);
-            this.applySettings();
-        }
+    initializeElements() {
+        this.cookieConsent = document.getElementById('cookieConsent');
+        this.openCookieSettingsBtn = document.getElementById('openCookieSettings');
+        this.cookieSettingsDiv = document.getElementById('cookieSettings');
+        this.showSettingsBtn = document.getElementById('showSettings');
+        this.saveSettingsBtn = document.getElementById('saveSettings');
+        this.analyticsCookiesCheckbox = document.getElementById('analyticsCookies');
+        this.marketingCookiesCheckbox = document.getElementById('marketingCookies');
+    }
 
-        this.setupEventListeners();
+    loadSavedSettings() {
+        const savedSettings = this.getCookie('cookie_settings');
         
-        // Cookie Settings Link im Footer
-        const openCookieSettingsBtn = document.getElementById('openCookieSettings');
-        if (openCookieSettingsBtn) {
-            openCookieSettingsBtn.addEventListener('click', (e) => {
-                e.preventDefault();
+        // Wenn KEINE Einstellungen gespeichert, Banner anzeigen
+        if (!savedSettings) {
+            this.showBanner();
+        } else {
+            const parsedSettings = JSON.parse(savedSettings);
+            if (!parsedSettings.consent_given) {
                 this.showBanner();
-                // Öffne direkt die Einstellungen
-                document.getElementById('cookieSettings').style.display = 'block';
-                document.getElementById('showSettings').textContent = 'Einstellungen schließen';
-                document.getElementById('saveSettings').style.display = 'block';
-            });
+            } else {
+                this.cookieSettings = parsedSettings;
+                this.applySettings();
+                this.hideBanner();
+            }
+        }
+    }
+    
+    showBanner() {
+        if (this.cookieConsent) {
+            this.cookieConsent.classList.add('show');
+            this.cookieConsent.style.display = 'block';
+        }
+    
+        // Einstellungen standardmäßig geschlossen
+        if (this.cookieSettingsDiv) {
+            this.cookieSettingsDiv.style.display = 'none';
+        }
+    
+        // Button-Text auf "Einstellungen"
+        if (this.showSettingsBtn) {
+            this.showSettingsBtn.textContent = 'Einstellungen';
+        }
+    
+        // Speichern-Button verstecken
+        if (this.saveSettingsBtn) {
+            this.saveSettingsBtn.style.display = 'none';
         }
     }
 
     setupEventListeners() {
-        // Einstellungen anzeigen/verstecken
-        const showSettingsBtn = document.getElementById('showSettings');
-        const settingsDiv = document.getElementById('cookieSettings');
-        const saveSettingsBtn = document.getElementById('saveSettings');
-        
-        showSettingsBtn.addEventListener('click', () => {
-            const isVisible = settingsDiv.style.display !== 'none';
-            settingsDiv.style.display = isVisible ? 'none' : 'block';
-            showSettingsBtn.textContent = isVisible ? 'Einstellungen' : 'Einstellungen schließen';
-            saveSettingsBtn.style.display = isVisible ? 'none' : 'block';
-        });
-
-        // Einstellungen speichern
-        saveSettingsBtn.addEventListener('click', () => {
-            this.cookieSettings = {
-                essential: true,
-                analytics: document.getElementById('analyticsCookies').checked,
-                marketing: document.getElementById('marketingCookies').checked
-            };
-            this.saveSettings();
-        });
-
-        // Alle Cookies akzeptieren
-        const acceptBtn = document.getElementById('acceptCookies');
-        acceptBtn.addEventListener('click', () => {
-            this.cookieSettings = {
-                essential: true,
-                analytics: true,
-                marketing: true
-            };
-            this.saveSettings();
-        });
-
-        // Alle Cookies ablehnen (außer essenzielle)
-        const rejectBtn = document.getElementById('rejectCookies');
-        rejectBtn.addEventListener('click', () => {
-            this.cookieSettings = {
-                essential: true,
-                analytics: false,
-                marketing: false
-            };
-            this.saveSettings();
-        });
-
-        // Checkbox Event Listener
-        ['analyticsCookies', 'marketingCookies'].forEach(id => {
-            const checkbox = document.getElementById(id);
-            checkbox.addEventListener('change', () => {
-                const key = id.replace('Cookies', '').toLowerCase();
-                this.cookieSettings[key] = checkbox.checked;
+        // Footer Cookie-Einstellungen Link
+        if (this.openCookieSettingsBtn) {
+            this.openCookieSettingsBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openCookieSettings();
             });
-        });
+        }
+    
+        // Buttons
+        const acceptBtn = document.getElementById('acceptCookies');
+    
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', () => this.acceptAllCookies());
+        }
+    
+        // Zusätzliche Event Listener
+        if (this.showSettingsBtn) {
+            this.showSettingsBtn.addEventListener('click', () => this.toggleCookieSettings());
+        }
+    
+        if (this.saveSettingsBtn) {
+            this.saveSettingsBtn.addEventListener('click', () => this.saveCookieSettings());
+        }
+    }
+    
+    // Entferne die Methode rejectNonEssentialCookies() komplett
+
+    openCookieSettings() {
+        if (this.cookieConsent) {
+            this.cookieConsent.classList.add('show');
+            this.cookieConsent.style.display = 'block';
+        }
+
+        if (this.cookieSettingsDiv) {
+            this.cookieSettingsDiv.style.display = 'block';
+        }
+
+        if (this.showSettingsBtn) {
+            this.showSettingsBtn.textContent = 'Einstellungen schließen';
+        }
+
+        // Speichern-Button nur zeigen, wenn Einstellungen geöffnet sind
+        if (this.saveSettingsBtn) {
+            this.saveSettingsBtn.style.display = 'block';
+        }
     }
 
-    showBanner() {
-        this.cookieConsent.classList.add('show');
+    toggleCookieSettings() {
+        if (this.cookieSettingsDiv) {
+            const isVisible = this.cookieSettingsDiv.style.display !== 'none';
+            
+            // Nur den Einstellungsbereich öffnen/schließen
+            this.cookieSettingsDiv.style.display = isVisible ? 'none' : 'block';
+            
+            if (this.showSettingsBtn) {
+                this.showSettingsBtn.textContent = isVisible ? 'Einstellungen' : 'Einstellungen schließen';
+            }
+    
+            // Speichern-Button nur zeigen, wenn Einstellungen sichtbar sind
+            if (this.saveSettingsBtn) {
+                this.saveSettingsBtn.style.display = isVisible ? 'none' : 'block';
+            }
+        }
     }
 
-    hideBanner() {
-        this.cookieConsent.classList.remove('show');
+    acceptAllCookies() {
+        this.cookieSettings = {
+            essential: true,
+            analytics: true,
+            marketing: true,
+            consent_given: true
+        };
+        this.saveSettings();
+    }
+
+    rejectNonEssentialCookies() {
+        this.cookieSettings = {
+            essential: true,
+            analytics: false,
+            marketing: false,
+            consent_given: true
+        };
+        this.saveSettings();
+    }
+
+    saveCookieSettings() {
+        this.cookieSettings = {
+            essential: true,
+            analytics: this.analyticsCookiesCheckbox.checked,
+            marketing: this.marketingCookiesCheckbox.checked,
+            consent_given: true
+        };
+        this.saveSettings();
     }
 
     saveSettings() {
+        // Speichere Einstellungen mit Ablaufdatum von 365 Tagen
         this.setCookie('cookie_settings', JSON.stringify(this.cookieSettings), 365);
         this.applySettings();
         this.hideBanner();
@@ -107,24 +171,38 @@ class CookieConsent {
 
     applySettings() {
         // Analytics Cookies
+        if (this.analyticsCookiesCheckbox) {
+            this.analyticsCookiesCheckbox.checked = this.cookieSettings.analytics;
+        }
+
+        // Marketing Cookies
+        if (this.marketingCookiesCheckbox) {
+            this.marketingCookiesCheckbox.checked = this.cookieSettings.marketing;
+        }
+
+        // Google Analytics Consent
         if (this.cookieSettings.analytics) {
             this.enableGoogleAnalytics();
         } else {
             this.disableGoogleAnalytics();
         }
 
-        // Marketing Cookies
+        // Marketing Consent
         if (this.cookieSettings.marketing) {
             this.enableMarketing();
         } else {
             this.disableMarketing();
         }
-
-        // Update checkboxes
-        document.getElementById('analyticsCookies').checked = this.cookieSettings.analytics;
-        document.getElementById('marketingCookies').checked = this.cookieSettings.marketing;
     }
 
+    hideBanner() {
+        if (this.cookieConsent) {
+            this.cookieConsent.classList.remove('show');
+            this.cookieConsent.style.display = 'none';
+        }
+    }
+
+    // Weitere Methoden wie Google Analytics Consent
     enableGoogleAnalytics() {
         if (typeof gtag === 'function') {
             gtag('consent', 'update', {
@@ -157,6 +235,7 @@ class CookieConsent {
         }
     }
 
+    // Cookie-Hilfsmethoden
     setCookie(name, value, days) {
         const date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -176,5 +255,5 @@ class CookieConsent {
     }
 }
 
-// Sofortige Initialisierung
+// Initialisierung
 new CookieConsent();

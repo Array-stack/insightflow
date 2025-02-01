@@ -144,6 +144,28 @@
     50% { transform: translateY(-4px); }
 }
 
+.mobile-chat {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.mobile-chat .chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.mobile-chat .chat-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
 /* Chat Footer */
 .chat-footer {
     padding: 15px 20px;
@@ -207,6 +229,19 @@
 .chat-info small {
     color: #6c757d;
     font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .mobile-optimized {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        width: calc(100% - 40px) !important;
+        max-width: 400px !important;
+        z-index: 9999 !important;
+        border-radius: 15px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    }
 }
 
 /* Responsive Design */

@@ -1,75 +1,84 @@
-console.log('Contact form script loaded');
-
+// Web3Forms Kontaktformular Handling
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('quickContactForm');
+    // Konfiguration
+    const WEB3FORMS_API_KEY = '5183720c-076d-4b2d-b546-e83644b1d8a7';
+    const forms = document.querySelectorAll('#quickContactForm, #contactForm');
     
-    if (!form) {
-        console.error('Quick contact form not found!');
-        return;
-    }
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const submitButton = form.querySelector('button[type="submit"]');
-        const buttonText = submitButton.querySelector('.button-text');
-        const spinner = submitButton.querySelector('.spinner-border');
-
-        if (form.checkValidity()) {
-            // Disable button and show loading state
-            submitButton.disabled = true;
-            buttonText.style.display = 'none';
-            spinner.classList.remove('d-none');
-
-            const formData = new FormData(form);
-            
-            // Send to Web3Forms
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    access_key: '5183720c-076d-4b2d-b546-e83644b1d8a7',
-                    name: formData.get('quickName'),
-                    email: formData.get('quickEmail'),
-                    message: formData.get('quickMessage'),
-                    subject: 'Neue Kontaktanfrage',
-                    from_name: formData.get('quickName')
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Show success message
-                    form.reset();
-                    showToast('Erfolg!', 'Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.');
-                    form.classList.remove('was-validated');
-                } else {
-                    throw new Error('Failed to submit form');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showToast('Fehler', 'Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
-            })
-            .finally(() => {
-                // Reset button state
-                submitButton.disabled = false;
-                buttonText.style.display = 'inline';
-                spinner.classList.add('d-none');
-            });
+    forms.forEach(form => {
+        if (!form) {
+            console.error('Kontaktformular nicht gefunden!');
+            return;
         }
 
-        form.classList.add('was-validated');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            const buttonText = submitButton.querySelector('.button-text, .submit-text');
+            const spinner = submitButton.querySelector('.spinner-border');
+
+            // Formular-Validierung
+            if (form.checkValidity()) {
+                // Button deaktivieren und Ladeanimation zeigen
+                submitButton.disabled = true;
+                buttonText.style.display = 'none';
+                spinner.classList.remove('d-none');
+
+                const formData = new FormData(form);
+                
+                // Dynamische Feldnamen-Zuordnung
+                const submissionData = {
+                    access_key: WEB3FORMS_API_KEY,
+                    name: formData.get('quickName') || formData.get('name'),
+                    email: formData.get('quickEmail') || formData.get('email'),
+                    phone: formData.get('quickPhone') || formData.get('phone'),
+                    company: formData.get('quickCompany') || formData.get('company'),
+                    message: formData.get('quickMessage') || formData.get('message'),
+                    subject: 'Neue Kontaktanfrage von der Website',
+                    from_name: formData.get('quickName') || formData.get('name')
+                };
+
+                // An Web3Forms senden
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(submissionData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Erfolgsmeldung
+                        form.reset();
+                        showToast('Erfolg!', 'Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns in Kürze bei Ihnen.');
+                        form.classList.remove('was-validated');
+                    } else {
+                        throw new Error('Formularübermittlung fehlgeschlagen');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fehler:', error);
+                    showToast('Fehler', 'Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.');
+                })
+                .finally(() => {
+                    // Button-Status zurücksetzen
+                    submitButton.disabled = false;
+                    buttonText.style.display = 'inline';
+                    spinner.classList.add('d-none');
+                });
+            }
+
+            form.classList.add('was-validated');
+        });
     });
 });
 
-// Toast notification function
+// Toast-Benachrichtigungsfunktion
 function showToast(title, message) {
-    // Create toast container if it doesn't exist
+    // Toast-Container erstellen, falls nicht vorhanden
     let toastContainer = document.querySelector('.toast-container');
     if (!toastContainer) {
         toastContainer = document.createElement('div');
@@ -77,7 +86,7 @@ function showToast(title, message) {
         document.body.appendChild(toastContainer);
     }
 
-    // Create toast element
+    // Toast-Element erstellen
     const toastHtml = `
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -90,16 +99,19 @@ function showToast(title, message) {
         </div>
     `;
 
-    // Add toast to container
+    // Toast zum Container hinzufügen
     toastContainer.insertAdjacentHTML('beforeend', toastHtml);
 
-    // Initialize and show toast
+    // Toast initialisieren und anzeigen
     const toastElement = toastContainer.lastElementChild;
     const toast = new bootstrap.Toast(toastElement);
     toast.show();
 
-    // Remove toast after it's hidden
+    // Toast nach Ausblenden entfernen
     toastElement.addEventListener('hidden.bs.toast', function() {
         toastElement.remove();
     });
 }
+
+// Debug-Logging
+console.log('Kontaktformular-Skript erfolgreich geladen.');

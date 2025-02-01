@@ -1,149 +1,231 @@
-class ChatBot {
+import { ChatAPI } from './api.js';
+import { ChatDatabase } from './database.js';
+import { ChatUI } from './ui.js';
+import { apiConfig, companyConfig, systemPrompt, responseTemplates } from './config.js';
+
+/**
+ * Hauptklasse des Chatbots
+ */
+export class ChatBot {
     constructor() {
-        this.messages = [];
-        this.userInfo = {};
-        this.standardResponses = {
-            greeting: "Willkommen bei InsightFlow! Ich bin Ihr KI-Assistent. Wie kann ich Ihnen helfen?",
-            contact: "Gerne helfe ich Ihnen weiter. Könnten Sie mir bitte Ihren Namen und Ihre E-Mail-Adresse mitteilen?",
-            thanks: "Vielen Dank für Ihre Informationen! Wie kann ich Ihnen konkret weiterhelfen?",
-            goodbye: "Danke für Ihr Interesse! Wir werden uns bald bei Ihnen melden."
+        console.log('Initializing ChatBot with config:', { apiConfig, companyConfig });
+
+        // Prüfe API-Konfiguration
+        if (!apiConfig.apiKey) {
+            console.error('Kein API-Key gefunden. Bitte config.template.js als config.local.js kopieren und API-Key einfügen.');
+            return;
+        }
+
+        // Initialisiere Komponenten
+        this.api = new ChatAPI({
+            apiKey: apiConfig.apiKey,
+            systemPrompt: systemPrompt,
+            model: apiConfig.model,
+            temperature: apiConfig.temperature,
+            maxRetries: apiConfig.maxRetries
+        });
+
+        this.db = new ChatDatabase();
+        this.ui = new ChatUI(companyConfig);
+
+        // Konversationsstatus
+        this.conversation = {
+            id: Date.now(),
+            userInfo: {},
+            messages: [],
+            status: 'new'
         };
+
+        this.isProcessing = false;
+        console.log('ChatBot components initialized');
     }
 
+    /**
+     * Initialisiert den Chatbot
+     */
     async init() {
-        this.chatContainer = document.createElement('div');
-        this.chatContainer.className = 'chat-container';
-        document.body.appendChild(this.chatContainer);
+        try {
+            console.log('Starting ChatBot initialization');
 
-        this.createChatInterface();
-        this.addEventListeners();
-        
-        // Chat startet minimiert
-        this.chatContainer.querySelector('.chat-widget').classList.add('minimized');
-    }
+            // UI initialisieren
+            const chatContainer = this.ui.init();
+            console.log('UI initialized');
 
-    createChatInterface() {
-        this.chatContainer.innerHTML = `
-            <div class="chat-widget">
-                <div class="chat-header">
-                    <h3>InsightFlow Support</h3>
-                    <button class="minimize-btn">_</button>
-                </div>
-                <div class="chat-messages"></div>
-                <div class="chat-input">
-                    <input type="text" placeholder="Ihre Nachricht...">
-                    <button class="send-btn">Senden</button>
-                </div>
-            </div>
-        `;
-    }
+            // Event Listener einrichten
+            this.setupEventListeners(chatContainer);
+            console.log('Event listeners set up');
 
-    addEventListeners() {
-        const input = this.chatContainer.querySelector('input');
-        const sendBtn = this.chatContainer.querySelector('.send-btn');
-        const minimizeBtn = this.chatContainer.querySelector('.minimize-btn');
+            // API-Verbindung testen mit Timeout
+            const apiStatus = await Promise.race([
+                this.api.testConnection(),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)) // 5 Sekunden Timeout
+            ]);
 
-        // Event Listener für den Support-Bereich "Chat starten" Button
-        const supportChatBtn = document.querySelector('#contact .support-chat-btn');
-        if (supportChatBtn) {
-            supportChatBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.openChat();
-            });
-        }
+            console.log('API connection test:', apiStatus);
 
-        sendBtn.addEventListener('click', () => this.handleUserInput(input));
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.handleUserInput(input);
-        });
-        minimizeBtn.addEventListener('click', () => this.toggleChat());
-    }
-
-    async handleUserInput(input) {
-        const message = input.value.trim();
-        if (!message) return;
-
-        this.addMessage('user', message);
-        input.value = '';
-
-        // Verarbeite Benutzereingabe
-        if (!this.userInfo.name) {
-            await this.handleNameInput(message);
-        } else if (!this.userInfo.email) {
-            await this.handleEmailInput(message);
-        } else {
-            await this.handleGeneralInput(message);
-        }
-    }
-
-    async handleNameInput(message) {
-        this.userInfo.name = message;
-        this.addMessage('bot', "Danke! Und wie lautet Ihre E-Mail-Adresse?");
-    }
-
-    async handleEmailInput(message) {
-        if (this.validateEmail(message)) {
-            this.userInfo.email = message;
-            this.saveUserInfo();
-            this.addMessage('bot', this.standardResponses.thanks);
-        } else {
-            this.addMessage('bot', "Bitte geben Sie eine gültige E-Mail-Adresse ein.");
-        }
-    }
-
-    async handleGeneralInput(message) {
-        // Hier würde die ChatGPT API Integration kommen
-        const response = await this.getAIResponse(message);
-        this.addMessage('bot', response);
-    }
-
-    async getAIResponse(message) {
-        // Hier würde der API Call zu ChatGPT erfolgen
-        // Beispielantwort für Demo-Zwecke
-        return "Danke für Ihre Anfrage. Ein Mitarbeiter wird sich in Kürze bei Ihnen melden.";
-    }
-
-    addMessage(sender, text) {
-        const messagesDiv = this.chatContainer.querySelector('.chat-messages');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${sender}-message`;
-        messageDiv.textContent = text;
-        messagesDiv.appendChild(messageDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-        this.messages.push({ sender, text, timestamp: new Date() });
-    }
-
-    validateEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    saveUserInfo() {
-        // Hier würden die Daten an den Server gesendet
-        console.log('Gespeicherte Benutzerinformationen:', this.userInfo);
-        
-        // Beispiel für localStorage Speicherung
-        const contacts = JSON.parse(localStorage.getItem('chatContacts') || '[]');
-        contacts.push({
-            ...this.userInfo,
-            timestamp: new Date(),
-            messages: this.messages
-        });
-        localStorage.setItem('chatContacts', JSON.stringify(contacts));
-    }
-
-    openChat() {
-        const widget = this.chatContainer.querySelector('.chat-widget');
-        if (widget.classList.contains('minimized')) {
-            widget.classList.remove('minimized');
-            if (this.messages.length === 0) {
-                this.addMessage('bot', this.standardResponses.greeting);
+            if (!apiStatus.success) {
+                console.error('API connection failed:', apiStatus.error);
+                this.ui.showError('Verbindungsfehler. Bitte versuchen Sie es später erneut.');
+                return;
             }
+
+            // Begrüßungsnachricht senden
+            this.addMessage({
+                sender: 'bot',
+                text: responseTemplates.greeting,
+                timestamp: new Date()
+            });
+
+            console.log('ChatBot initialization completed successfully');
+
+        } catch (error) {
+            console.error('Initialization error:', error);
+            this.ui.showError('Fehler beim Initialisieren des Chats.');
         }
     }
 
-    toggleChat() {
-        const widget = this.chatContainer.querySelector('.chat-widget');
-        widget.classList.toggle('minimized');
+    /**
+     * Richtet Event Listener ein
+     */
+    setupEventListeners(container) {
+        // Nachricht senden
+        container.addEventListener('message-send', async (e) => {
+            if (this.isProcessing) return;
+
+            const message = e.detail.message;
+            await this.handleUserMessage(message);
+        });
+
+        // Chat minimieren/maximieren
+        container.addEventListener('chat-toggle', (e) => {
+            if (!e.detail.isMinimized && this.conversation.messages.length === 0) {
+                this.addMessage({
+                    sender: 'bot',
+                    text: responseTemplates.greeting,
+                    timestamp: new Date()
+                });
+            }
+        });
+    }
+
+    /**
+     * Verarbeitet eine Benutzernachricht
+     */
+    async handleUserMessage(message) {
+        try {
+            this.isProcessing = true;
+            this.ui.setInputLock(true);
+
+            // Benutzernachricht hinzufügen
+            this.addMessage({
+                sender: 'user',
+                text: message,
+                timestamp: new Date()
+            });
+
+            // Typing-Indikator anzeigen
+            this.ui.setTypingIndicator(true);
+
+            // API-Antwort holen
+            const response = await this.api.sendMessage(
+                message,
+                this.conversation.messages
+            );
+
+            // Antwort hinzufügen (mit Überprüfung)
+            const botResponse = response.text || responseTemplates.error;
+            this.addMessage({
+                sender: 'bot',
+                text: botResponse,
+                timestamp: new Date()
+            });
+
+            // Konversation speichern
+            await this.saveConversation();
+
+        } catch (error) {
+            console.error('Message handling error:', error);
+
+            this.conversation.status = 'needsAttention';
+            await this.saveConversation();
+
+            // Fehlermeldung anzeigen
+            this.addMessage({
+                sender: 'bot',
+                text: responseTemplates.error,
+                timestamp: new Date()
+            });
+
+        } finally {
+            this.isProcessing = false;
+            this.ui.setInputLock(false);
+            this.ui.setTypingIndicator(false);
+        }
+    }
+
+    /**
+     * Fügt eine Nachricht zur Konversation hinzu
+     */
+    addMessage(message) {
+        if (!message.text) {
+            console.error('Ungültige Nachricht:', message);
+            return;
+        }
+
+        this.conversation.messages.push(message);
+        this.ui.addMessage(message);
+    }
+
+    /**
+     * Speichert die aktuelle Konversation
+     */
+    async saveConversation() {
+        try {
+            await this.db.saveConversation(this.conversation);
+        } catch (error) {
+            console.error('Error saving conversation:', error);
+
+            // Lokales Backup
+            localStorage.setItem('conversationBackup', JSON.stringify(this.conversation));
+        }
+    }
+
+    /**
+     * Analysiert die Konversation
+     */
+    analyzeConversation() {
+        if (!this.api.analyzeContext) {
+            console.error('analyzeContext-Methode nicht verfügbar');
+            return null;
+        }
+
+        return this.api.analyzeContext(this.conversation.messages);
+    }
+
+    /**
+     * Beendet die aktuelle Konversation
+     */
+    async endConversation() {
+        if (this.conversation.status === 'completed') return; // Verhindere doppelte Beendigung
+
+        if (this.conversation.messages.length > 0) {
+            this.addMessage({
+                sender: 'bot',
+                text: responseTemplates.goodbye,
+                timestamp: new Date()
+            });
+
+            this.conversation.status = 'completed';
+            await this.saveConversation();
+        }
+    }
+
+    /**
+     * Öffnet den Chat
+     */
+    openChat() {
+        if (this.ui) {
+            this.ui.openChat();
+        }
     }
 }

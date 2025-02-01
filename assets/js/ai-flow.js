@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.querySelector('.ai-flow-visual canvas');
     if (!canvas) return;
 
@@ -9,32 +9,32 @@ document.addEventListener('DOMContentLoaded', function() {
     let mouseY = 0;
     let isMouseOver = false;
     let time = 0;
-    
-    // Set canvas size with device pixel ratio
+
+    // Device Pixel Ratio für scharfe Darstellung
     const dpr = window.devicePixelRatio || 1;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 
-    // Configuration
+    // Konfiguration
     const config = {
         nodes: {
             count: 25,
             size: 3,
-            speed: 0.3,
-            maxActiveNodes: 3
+            speed: 0.7,
+            maxActiveNodes: 10
         },
         colors: {
-            primary: '0, 74, 173',      // Dunkelblau (#004AAD)
-            secondary: '0, 168, 255',    // Hellblau (#00A8FF)
-            cursor: '0, 168, 255'       // Hellblau für Mauskugel
+            primary: '0, 74, 173', // Dunkelblau (#004AAD)
+            secondary: '0, 168, 255', // Hellblau (#00A8FF)
+            cursor: '0, 168, 255' // Hellblau für Mauskugel
         },
         mouse: {
-            size: 30,                   // Größere Kugel
-            opacity: 0.3,               // Mehr Deckkraft
+            size: 30, // Größere Kugel
+            opacity: 0.3, // Mehr Deckkraft
             glow: true,
-            glowSize: 45,              // Größerer Glow
-            glowOpacity: 0.15          // Stärkerer Glow
+            glowSize: 45, // Größerer Glow
+            glowOpacity: 0.15 // Stärkerer Glow
         },
         lines: {
             maxLength: 150,
@@ -44,9 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Neural network nodes
+    // Neuronale Netzwerk-Knoten
     class Node {
         constructor() {
+            this.reset();
+        }
+
+        reset() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
             this.size = config.nodes.size;
@@ -61,12 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         update() {
-            // Mouse repulsion
+            // Maus-Abstoßung
             if (isMouseOver) {
                 const dx = this.x - mouseX / dpr;
                 const dy = this.y - mouseY / dpr;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance < 100) {
                     const force = (100 - distance) / 100;
                     this.x += dx * force * 0.1;
@@ -74,27 +78,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Return to original position
+            // Rückkehr zur ursprünglichen Position
             if (!isMouseOver) {
                 this.x += (this.originalX - this.x) * 0.05;
                 this.y += (this.originalY - this.y) * 0.05;
             }
 
-            // Subtle continuous movement
+            // Subtile kontinuierliche Bewegung
             this.x += Math.sin(time * 0.001 + this.pulsePhase) * 0.2;
             this.y += Math.cos(time * 0.001 + this.pulsePhase) * 0.2;
 
-            // Update activation state
+            // Aktivierungszustand aktualisieren
             if (this.activated) {
-                this.activationTime += 0.03;  // Langsamere Aktivierung
+                this.activationTime += 0.03; // Langsamere Aktivierung
                 if (this.activationTime >= 1) {
                     this.activated = false;
                     this.activationTime = 0;
-                    
-                    // Nur aktivieren wenn nicht zu viele Nodes aktiv sind
+
+                    // Nur aktivieren, wenn nicht zu viele Knoten aktiv sind
                     const activeNodes = nodes.filter(n => n.activated).length;
                     if (activeNodes < config.nodes.maxActiveNodes) {
-                        // Wähle zufällig eine Verbindung zum Aktivieren
                         const randomConnection = this.connections[Math.floor(Math.random() * this.connections.length)];
                         if (randomConnection && Math.random() > 0.7) {
                             randomConnection.activate();
@@ -103,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Update pulse phase
+            // Pulsphase aktualisieren
             this.pulsePhase += 0.02;
         }
 
@@ -116,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         draw() {
             const size = this.size + Math.sin(this.pulsePhase) * 0.5;
-            
-            // Glow effect
+
+            // Glow-Effekt
             if (this.activated) {
                 const gradient = ctx.createRadialGradient(
                     this.x, this.y, size * 0.5,
@@ -125,24 +128,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 );
                 gradient.addColorStop(0, `rgba(${config.colors.secondary}, ${0.5 * (1 - this.activationTime)})`);
                 gradient.addColorStop(1, `rgba(${config.colors.secondary}, 0)`);
-                
+
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, size * 2, 0, Math.PI * 2);
                 ctx.fillStyle = gradient;
                 ctx.fill();
             }
-            
-            // Main node
+
+            // Hauptknoten
             ctx.beginPath();
             ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
-            
+
             if (this.activated) {
                 const alpha = 1 - this.activationTime;
                 ctx.fillStyle = `rgba(${config.colors.secondary}, ${alpha})`;
             } else {
                 ctx.fillStyle = `rgba(${config.colors.primary}, 0.5)`;
             }
-            
+
             ctx.fill();
         }
 
@@ -151,13 +154,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const dx = node.x - this.x;
                 const dy = node.y - this.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance < config.lines.maxLength && distance > config.lines.minLength) {
-                    // Berechne Kontrollpunkte für die Kurve
+                    // Kontrollpunkte für die Kurve
                     const midX = (this.x + node.x) / 2;
                     const midY = (this.y + node.y) / 2;
                     const offset = Math.sin(time * 0.001 + this.pulsePhase) * 20;
-                    
+
                     ctx.beginPath();
                     ctx.moveTo(this.x, this.y);
                     ctx.quadraticCurveTo(
@@ -165,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         midY - dx * config.lines.curve,
                         node.x, node.y
                     );
-                    
+
                     if (this.activated || node.activated) {
                         const alpha = Math.max(0.1, Math.min(1 - this.activationTime, 1 - node.activationTime));
                         ctx.strokeStyle = `rgba(${config.colors.secondary}, ${alpha * 0.3})`;
@@ -173,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const alpha = Math.max(0.1, 0.3 - (distance - config.lines.minLength) / (config.lines.maxLength - config.lines.minLength));
                         ctx.strokeStyle = `rgba(${config.colors.primary}, ${alpha})`;
                     }
-                    
+
                     ctx.lineWidth = config.lines.width;
                     ctx.stroke();
                 }
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Create nodes and establish connections
+    // Knoten erstellen und Verbindungen herstellen
     const nodes = Array.from({ length: config.nodes.count }, () => new Node());
     nodes.forEach(node => {
         nodes.forEach(otherNode => {
@@ -196,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Periodically activate random nodes
+    // Periodisch zufällige Knoten aktivieren
     setInterval(() => {
         const activeNodes = nodes.filter(n => n.activated).length;
         if (activeNodes < config.nodes.maxActiveNodes) {
@@ -206,23 +209,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 2000);
 
-    // Animation loop
+    // Animationsschleife
     function animate() {
         time = Date.now();
         ctx.clearRect(0, 0, width, height);
 
-        // Update and draw connections
+        // Verbindungen zeichnen
         nodes.forEach(node => {
             node.update();
             node.drawConnections();
         });
 
-        // Draw nodes
-        nodes.forEach(node => {
-            node.draw();
-        });
+        // Knoten zeichnen
+        nodes.forEach(node => node.draw());
 
-        // Draw mouse cursor effect
+        // Mauszeiger-Effekt
         if (isMouseOver) {
             // Äußerer Glow
             ctx.beginPath();
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.beginPath();
             ctx.arc(mouseX, mouseY, config.mouse.size, 0, Math.PI * 2);
             const sphereGradient = ctx.createRadialGradient(
-                mouseX - config.mouse.size/3, mouseY - config.mouse.size/3, 0,
+                mouseX - config.mouse.size / 3, mouseY - config.mouse.size / 3, 0,
                 mouseX, mouseY, config.mouse.size
             );
             sphereGradient.addColorStop(0, `rgba(${config.colors.cursor}, ${config.mouse.opacity + 0.2})`);
@@ -253,24 +254,46 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(animate);
     }
 
-    // Mouse event listeners
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-    });
+    // Event-Listener für Maus und Touch
+    const updateMousePosition = (x, y) => {
+        mouseX = x;
+        mouseY = y;
+    };
 
-    canvas.addEventListener('mouseenter', () => {
+    const handleMouseEnter = () => {
         isMouseOver = true;
         canvas.style.cursor = 'none';
-    });
+    };
 
-    canvas.addEventListener('mouseleave', () => {
+    const handleMouseLeave = () => {
         isMouseOver = false;
         canvas.style.cursor = 'default';
+    };
+
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        updateMousePosition(e.clientX - rect.left, e.clientY - rect.top);
     });
 
-    // Handle window resize
+    canvas.addEventListener('mouseenter', handleMouseEnter);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+
+    canvas.addEventListener('touchstart', (e) => {
+        handleMouseEnter();
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        updateMousePosition(touch.clientX - rect.left, touch.clientY - rect.top);
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        updateMousePosition(touch.clientX - rect.left, touch.clientY - rect.top);
+    });
+
+    canvas.addEventListener('touchend', handleMouseLeave);
+
+    // Fenstergröße anpassen
     window.addEventListener('resize', () => {
         width = canvas.offsetWidth;
         height = canvas.offsetHeight;
@@ -279,6 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.scale(dpr, dpr);
     });
 
-    // Start animation
+    // Animation starten
     animate();
 });

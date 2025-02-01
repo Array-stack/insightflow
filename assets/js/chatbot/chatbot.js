@@ -37,6 +37,7 @@ export class ChatBot {
         };
 
         this.isProcessing = false;
+        this.apiTested = false; // Neuer Flag für API-Test
         console.log('ChatBot components initialized');
     }
 
@@ -55,22 +56,13 @@ export class ChatBot {
             this.setupEventListeners(chatContainer);
             console.log('Event listeners set up');
             
-            // API-Verbindung testen
-            const apiStatus = await this.api.testConnection();
-            console.log('API connection test:', apiStatus);
-            
-            if (!apiStatus.success) {
-                console.error('API connection failed:', apiStatus.error);
-                this.ui.showError('Verbindungsfehler. Bitte versuchen Sie es später erneut.');
-                return;
-            }
-
-            // Begrüßungsnachricht senden
+            // Begrüßungsnachricht IMMER senden
             this.addMessage({
                 sender: 'bot',
                 text: responseTemplates.greeting,
                 timestamp: new Date()
             });
+            
             console.log('ChatBot initialization completed successfully');
 
         } catch (error) {
@@ -85,6 +77,28 @@ export class ChatBot {
     setupEventListeners(container) {
         // Nachricht senden
         container.addEventListener('message-send', async (e) => {
+            // API-Test NUR beim ERSTEN Senden
+            if (!this.apiTested) {
+                try {
+                    const apiStatus = await this.api.testConnection();
+                    console.log('Erster API-Verbindungstest:', apiStatus);
+                    
+                    if (!apiStatus.success) {
+                        console.error('API-Verbindung fehlgeschlagen:', apiStatus.error);
+                        this.ui.showError('KI-Antworten derzeit nicht verfügbar. Bitte versuchen Sie es später.');
+                        return; // Verhindere Nachrichtenverarbeitung bei Fehler
+                    }
+                    
+                    // Markiere API als getestet
+                    this.apiTested = true;
+                } catch (error) {
+                    console.error('API-Verbindungstest fehlgeschlagen:', error);
+                    this.ui.showError('KI-Antworten derzeit nicht verfügbar. Bitte versuchen Sie es später.');
+                    return; // Verhindere Nachrichtenverarbeitung bei Fehler
+                }
+            }
+
+            // Nur wenn API-Test erfolgreich oder bereits getestet
             if (this.isProcessing) return;
             
             const message = e.detail.message;
@@ -93,6 +107,7 @@ export class ChatBot {
 
         // Chat minimieren/maximieren
         container.addEventListener('chat-toggle', (e) => {
+            // Entferne API-Test beim Maximieren
             if (!e.detail.isMinimized && this.conversation.messages.length === 0) {
                 this.addMessage({
                     sender: 'bot',
