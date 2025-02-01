@@ -1,3 +1,4 @@
+
 # InsightFlow - KI-gestützte Business Intelligence Platform
 
 ![InsightFlow Logo](assets/images/logo.png)
@@ -115,3 +116,6 @@ Beiträge sind willkommen! Bitte lesen Sie [CONTRIBUTING.md](CONTRIBUTING.md) f�
 ---
 
 Entwickelt mit ❤️ von InsightFlow Team
+=======
+# insightflow
+
